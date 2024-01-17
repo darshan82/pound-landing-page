@@ -89,7 +89,7 @@ body {
 .login_btn {
   background-color: transparent;
   border: 1px solid #999;
-  width: 120px;
+  min-width: 120px;
 }
 
 .logo {
@@ -252,7 +252,7 @@ display: flex;
   }
 
   .login_btn {
-    width: 80px;
+    min-width: 80px;
     font-size: 10px;
   }
 
