@@ -179,7 +179,26 @@ body {
   text-align: center;
 }
 
-.footer {}
+.footer_email_div{
+width:300px;
+padding:5px;
+background-color: #343a40;
+border-radius: 10px;
+display: flex;
+
+}
+.footer_email_div >button{
+  color: #1F1F1F ;
+  background-color: #AEFF03;
+  width: 78px;
+  border: none;
+  border-radius: 10px;
+  font-family: Montserrat , sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 24px;
+}
+
 
 .footer_pound_img {
   width: 200px;
