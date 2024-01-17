@@ -3,10 +3,11 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import RegisterForm from './components/RegisterForm.jsx';
 import NavBar from './components/Navbar.jsx';
 import Main from "../assets/Main.png"
+import Footer from './components/Footer.jsx';
 const Register = () => {
   return (
-    <div>
-      {/* First Row: Logo and Player Login Button */}
+    <div className='main_div' >
+      {/* First Row: Logo and Player Login Button
       {/* <Navbar bg="transparent" variant="light" fixed="top"> */}
       {/* <Container> */}
       <NavBar />
@@ -14,35 +15,42 @@ const Register = () => {
       {/* </Navbar> */}
 
       {/* Second Row: Two Texts Vertically Aligned */}
-      <Container style={{ marginTop: "40px" }} >
+      <Container  style={{ paddingTop:100  }} >
         <Row >
           <Col>
             <p className="title">Reach The Avatar State</p>
-            <p className="sub_title" >Enhancing gamers' performance in-game and in real life by gamifying the fitness journey.</p>
+            <p className="sub_title" style={{textAlign:"center"}} >Enhancing gamers' performance in-game and in real life by gamifying the fitness journey.</p>
           </Col>
         </Row>
       </Container>
 
       {/* Last Section: Image and Form */}
-      <Container className='m-0 p-0'  >
+      <Container  style={{padding:0}} >
         <Row className="mt-2">
           <Col  md={12} lg={8} >
-            <div style={{height:"430px" }}>
+            {/* <div style={{maxHeight:"430px" , height:"50%" }}> */}
 
               <img
                 src={Main}
                 alt="Image"
-                style={{height:"100%" , }}
+                // style={{height:"100%" , }}
                 
-                // className="img-fluid"
+                className="img-fluid"
               />
-            </div>
+            {/* </div> */}
           </Col>
           <Col md={12} lg={4}>
             <RegisterForm />
           </Col>
         </Row>
       </Container>
+      {/* <Container style={{padding:0 , width:"100%"}}> */}
+        <Row style={{paddingInline:10}}>
+          <Col md={12}>
+            <Footer/>
+          </Col>
+        </Row>
+        {/* </Container>  */}
     </div>
   );
 };

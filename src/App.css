@@ -1,49 +1,16 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  background-color: black;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.main_div {
+  background: linear-gradient(360deg, #000000 0%, #1C1C1C 100%);
+  color: white;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  background-position: center;
+  background-size: cover;
+  /* width: 100vw; */
 }
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 
 .input {
   background-color: #343a40;
@@ -51,7 +18,7 @@
   /* box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px; */
   border: 0;
   min-height: 40px;
-  color: white;
+  color: rgb(221, 193, 193);
 
 }
 
@@ -80,7 +47,7 @@
   font-weight: 500;
 }
 
-.button:hover{
+.button:hover {
   background-color: yellowgreen;
   color: black;
 }
@@ -157,23 +124,26 @@
   flex-wrap: wrap;
   background-color: #343a40;
   border-radius: 10px;
-    }
+}
 
-    /* Style for the scrollbar */
-    .custom-scroll::-webkit-scrollbar {
-      width: 8px; /* Set the width of the scrollbar */
-    }
+/* Style for the scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+  /* Set the width of the scrollbar */
+}
 
-    .custom-scroll::-webkit-scrollbar-thumb {
-      border-radius: 10px;
+.custom-scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
 
-      background-color: #ced4da; /* Set the color of the thumb */
-    }
+  background-color: #ced4da;
+  /* Set the color of the thumb */
+}
 
-    .custom-scroll::-webkit-scrollbar-track {
-      border-radius: 0 10px 10px 0px;
-      background-color: #343a40; /* Set the color of the track */
-    }
+.custom-scroll::-webkit-scrollbar-track {
+  border-radius: 0 10px 10px 0px;
+  background-color: #343a40;
+  /* Set the color of the track */
+}
 
 .form_title {
   font-family: Montserrat, sans-serif;
@@ -207,6 +177,22 @@
   font-size: 11px;
   line-height: 14px;
   text-align: center;
+}
+
+.footer {}
+
+.footer_pound_img {
+  width: 200px;
+  height: fit-content;
+}
+
+.footer_subtitle {
+  width: 460px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 20px;
+  filter: contrast(60%);
 }
 
 @media only screen and (max-width: 900px) {
@@ -247,6 +233,20 @@
   .login_btn {
     width: 80px;
     font-size: 10px;
+  }
+
+
+  .footer_pound_img {
+    width: 170px;
+    object-fit: contain;
+  }
+  .footer_subtitle {
+    width: 303px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    filter: contrast(60%);
   }
 
   .navbar {
