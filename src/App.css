@@ -181,21 +181,22 @@ body {
   text-align: center;
 }
 
-.footer_email_div{
-width:300px;
-padding:5px;
-background-color: #343a40;
-border-radius: 10px;
-display: flex;
+.footer_email_div {
+  width: 300px;
+  padding: 5px;
+  background-color: #343a40;
+  border-radius: 10px;
+  display: flex;
 
 }
-.footer_email_div >button{
-  color: #1F1F1F ;
+
+.footer_email_div>button {
+  color: #1F1F1F;
   background-color: #AEFF03;
   width: 78px;
   border: none;
   border-radius: 10px;
-  font-family: Montserrat , sans-serif;
+  font-family: Montserrat, sans-serif;
   font-weight: 600;
   font-size: 13px;
   line-height: 24px;
@@ -261,6 +262,7 @@ display: flex;
     width: 170px;
     object-fit: contain;
   }
+
   .footer_subtitle {
     width: 303px;
     font-family: Montserrat, sans-serif;

@@ -9,23 +9,23 @@ import "../../App.css"
 const Footer = () => {
     return (
 
-        <div style={{ paddingInline: "20px", borderTop: "1px solid grey" , marginTop:"20px" }} >
+        <div style={{ paddingInline: "20px", borderTop: "1px solid grey", marginTop: "20px" }} >
             <div style={{ display: "flex", alignItems: 'center', flexWrap: "wrap-reverse", justifyContent: "space-between", marginTop: "10px" }}>
                 <div>
                     <img className='footer_pound_img' src={pound} />
                     <p className='footer_subtitle'>Our mission at POUND is to enable and motivate
                         every gamer to live a healthy lifestyle.</p>
                     <div>
-                        <a href='https://twitter.com/' target='_blank' style={{cursor:'pointer'}}>
-                        <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={twitterIcon} />
+                        <a href='https://twitter.com/' target='_blank' style={{ cursor: 'pointer' }}>
+                            <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={twitterIcon} />
                         </a>
-                        <a href='https://www.instagram.com/'target='_blank' style={{cursor:'pointer'}} >
+                        <a href='https://www.instagram.com/' target='_blank' style={{ cursor: 'pointer' }} >
 
-                        <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={instagramIcon} />
+                            <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={instagramIcon} />
                         </a>
-                        <a href='https://discord.com/' target='_blank' style={{cursor:'pointer'}}>
+                        <a href='https://discord.com/' target='_blank' style={{ cursor: 'pointer' }}>
 
-                        <img src={discordIcon} />
+                            <img src={discordIcon} />
                         </a>
                     </div>
                 </div>

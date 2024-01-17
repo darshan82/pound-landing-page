@@ -9,9 +9,9 @@ function App() {
 
   return (
     <>
-        <Register/>
+      <Register />
 
-          </>
+    </>
   )
 }
 
