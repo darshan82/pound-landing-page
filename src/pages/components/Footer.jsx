@@ -9,8 +9,8 @@ import "../../App.css"
 const Footer = () => {
     return (
 
-        <div style={{paddingInline:"20px"}} >
-            <div style={{ display: "flex", alignItems: 'center', justifyContent: "space-between", }}>
+        <div style={{paddingInline:"20px" , borderTop:"1px solid grey" }} >
+            <div style={{ display: "flex", alignItems: 'center', justifyContent: "space-between", marginTop:"10px" }}>
                 <div>
                     <img className='footer_pound_img' src={pound} />
                     <p className='footer_subtitle'>Our mission at POUND is to enable and motivate
