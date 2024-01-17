@@ -38,7 +38,7 @@ const RegisterForm = () => {
       {/* Part 3: Game Options */}
       <Row  >
         <Col>
-          <p className='form_category_title'>What games do you play?</p >
+          <p className='form_categories_title'>What games do you play?</p >
           <Form className='form_category_container custom-scroll' >
             {/* Game Options */}
             {[
