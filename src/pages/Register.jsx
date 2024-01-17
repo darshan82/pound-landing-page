@@ -7,12 +7,7 @@ import Footer from './components/Footer.jsx';
 const Register = () => {
   return (
     <div className='main_div' >
-      {/* First Row: Logo and Player Login Button
-      {/* <Navbar bg="transparent" variant="light" fixed="top"> */}
-      {/* <Container> */}
       <NavBar />
-      {/* </Container> */}
-      {/* </Navbar> */}
 
       {/* Second Row: Two Texts Vertically Aligned */}
       <Container  style={{ paddingTop:100  }} >
@@ -28,24 +23,18 @@ const Register = () => {
       <Container  style={{padding:0}} >
         <Row className="mt-2">
           <Col  md={12} lg={8} >
-            {/* <div style={{maxHeight:"430px" , height:"50%" }}> */}
-
               <img
                 src={Main}
                 alt="Image"
-                // style={{height:"100%" , }}
-                
                 className="img-fluid"
               />
-            {/* </div> */}
           </Col>
           <Col md={12} lg={4}>
             <RegisterForm />
           </Col>
         </Row>
       </Container>
-      {/* <Container style={{padding:0 , width:"100%"}}> */}
-        <Row style={{paddingInline:10}}>
+        <Row >
           <Col md={12}>
             <Footer/>
           </Col>
