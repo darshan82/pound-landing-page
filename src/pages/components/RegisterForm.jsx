@@ -3,7 +3,6 @@ import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import "../../App.css";
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase';
-import ToastExample from './Alert';
 import ToastNotification from './Alert';
 
 const RegisterForm = () => {
@@ -114,7 +113,7 @@ const RegisterForm = () => {
   return (
     <Container className='form_container'>
       {/* Part 1: Text Titles */}
-      <ToastExample
+      <ToastNotification
         show={showToast}
         onClose={() => setShowToast(false)}
         type={toastType}

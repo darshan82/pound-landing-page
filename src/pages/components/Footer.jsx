@@ -8,13 +8,24 @@ import pound from "../../assets/Pound.png";
 import "../../App.css";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from '../../../firebase';
+import ToastNotification from './Alert';
 
 const Footer = () => {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+  const [toastType, setToastType] = useState('success');
+  const [toastMessage, setToastMessage] = useState('');
 
-    const handleSubmit = async () => {
+  const showToastNotification = (type, message) => {
+    setToastType(type);
+    setToastMessage(message);
+    setShowToast(true);
+  };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         // Reset previous error messages
         setEmailError('');
 
@@ -32,18 +43,19 @@ const Footer = () => {
             const existingEmail = querySnapshot.docs.find(doc => doc.data().email === email);
 
             if (existingEmail) {
-                setEmailError("Email is already in our Subscribers List");
+                showToastNotification("error" ,"Email is already in our Subscribers List");
                 // Handle duplicate email scenario
             } else {
                 // Create the new document
                 try {
                     const docRef = await addDoc(collection(db, "subscribedUsers"), { email });
+                    if(docRef.id) showToastNotification("success" , "You have Susbcribe Successfully")
                 } catch (e) {
-                    alert("Some thing went wrong");
+                    showToastNotification("error" , "Some thing went wrong");
                     console.log("Error adding document: ", e);
                 }
             }
-
+            
             // Clear the email input and reset loading state after a short delay (simulating asynchronous operation)
             setTimeout(() => {
                 setEmail('');
@@ -54,6 +66,12 @@ const Footer = () => {
 
     return (
         <div style={{ paddingInline: "20px", borderTop: "1px solid grey", marginTop: "20px" }}>
+            <ToastNotification
+            show={showToast}
+            onClose={() => setShowToast(false)}
+            type={toastType}
+            message={toastMessage}
+      />
             <div style={{ display: "flex", alignItems: 'center', flexWrap: "wrap-reverse", justifyContent: "space-between", marginTop: "10px" }}>
                 <div>
                     <img className='footer_pound_img' src={pound} alt="Pound" />
@@ -70,7 +88,7 @@ const Footer = () => {
                         </a>
                     </div>
                 </div>
-                <div style={{ marginRight: "100px", paddingBlock: 40 }}>
+                <Form style={{ marginRight: "100px", paddingBlock: 40 }}>
                     <p style={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: "16px" }}>Subscribe to stay informed.</p>
                     <div className='footer_email_div'>
                         <input
@@ -81,13 +99,13 @@ const Footer = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <Button onClick={handleSubmit} disabled={loading}>
+                        <Button  type='submit' onClick={handleSubmit} disabled={loading}>
                             {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
                             
                         </Button>
                     </div>
                     {emailError && <p className="text-danger">{emailError}</p>}
-                </div>
+                </Form>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", width: "100%", marginTop: "30px" }}>
                 <p className='footer_subtitle' style={{ fontSize: "17px" }}>&copy; 2024 POUND</p>
