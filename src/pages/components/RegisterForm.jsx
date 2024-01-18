@@ -3,7 +3,8 @@ import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import "../../App.css";
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase';
-import CustomModal from './Alert';
+import ToastExample from './Alert';
+import ToastNotification from './Alert';
 
 const RegisterForm = () => {
 
@@ -25,18 +26,20 @@ const RegisterForm = () => {
   // State to track loading state
   const [loading, setLoading] = useState(false);
 
-  const [modalProps, setModalProps] = useState({ show: false, type: '', message: '' });
+  const [showToast, setShowToast] = useState(false);
+  const [toastType, setToastType] = useState('success');
+  const [toastMessage, setToastMessage] = useState('');
 
-  const handleShowModal = (type, message) => {
-    setModalProps({ show: true, type, message });
+  const showToastNotification = (type, message) => {
+    setToastType(type);
+    setToastMessage(message);
+    setShowToast(true);
   };
 
-  const handleCloseModal = () => {
-    setModalProps({ show: false, type: '', message: '' });
-  };
   // Function to handle form submission
   const handleContinue = async (e) => {
     e.preventDefault();
+    
 
     // Check if already loading, prevent multiple submissions
     if (loading) {
@@ -74,8 +77,8 @@ const RegisterForm = () => {
     // All required fields are filled, proceed to add the document
     try {
       const docRef = await addDoc(collection(db, "users"), { ...formData, categories });
-      console.log(docRef.id);   
-        handleShowModal("error" , "hello")
+      // console.log(docRef.id); 
+      showToastNotification("success" , "User Registered Successfully")  
       // Additional actions after successful submission if needed
 
       // Clear relevant form fields (firstName, lastName, email)
@@ -92,11 +95,11 @@ const RegisterForm = () => {
       setError('');
     } catch (e) {
       console.error("Error adding document: ", e);
-      setError('An error occurred. Please try again.');
+      showToastNotification("error",'Some thing Went Wrong');
     }
+    setLoading(false); 
 
     // Set loading to false after submission
-    setLoading(false);
   };
 
   // Function to handle checkbox changes
@@ -111,7 +114,12 @@ const RegisterForm = () => {
   return (
     <Container className='form_container'>
       {/* Part 1: Text Titles */}
-      <CustomModal {...modalProps} onHide={handleCloseModal}/>
+      <ToastExample
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        type={toastType}
+        message={toastMessage}
+      />
       <Row className="px-4">
         <Col>
           <p className='form_title' >Join the team of testers!</p>
