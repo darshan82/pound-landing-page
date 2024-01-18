@@ -50,6 +50,7 @@ const RegisterForm = () => {
     // All required fields are filled, proceed to add the document
     try {
       const docRef = await addDoc(collection(db, "users"), formData);
+      console.log(docRef.id)
     } catch (e) {
       console.error("Error adding document: ", e);
     }
