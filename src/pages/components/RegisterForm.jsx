@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import "../../App.css";
 import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../../firebase';
 
 const RegisterForm = () => {
   // State to store input values
