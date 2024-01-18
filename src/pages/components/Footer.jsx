@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, InputGroup, Button } from 'react-bootstrap';
+import { Row, Col, Form, InputGroup, Button, Spinner } from 'react-bootstrap';
 import LogoImage from "../../assets/logo.png";
 import discordIcon from "../../assets/discord.png";
 import twitterIcon from "../../assets/twitter.png";
@@ -12,6 +12,7 @@ import { db } from '../../../firebase';
 const Footer = () => {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async () => {
         // Reset previous error messages
@@ -24,28 +25,30 @@ const Footer = () => {
         } else if (!emailPattern.test(email)) {
             setEmailError('Please add a valid email.');
         } else {
+            // Set loading to true to disable the button and show the spinner
+            setLoading(true);
 
             const querySnapshot = await getDocs(collection(db, "subscribedUsers"));
             const existingEmail = querySnapshot.docs.find(doc => doc.data().email === email);
 
             if (existingEmail) {
-                setEmailError("Email is already in our  Subscribers List")
+                setEmailError("Email is already in our Subscribers List");
                 // Handle duplicate email scenario
             } else {
                 // Create the new document
                 try {
                     const docRef = await addDoc(collection(db, "subscribedUsers"), { email });
                 } catch (e) {
-                    alert("Some thing went wrong")
+                    alert("Some thing went wrong");
                     console.log("Error adding document: ", e);
                 }
             }
-            // Email is valid, do something with it (e.g., log to console)
 
-            // You can also add code to save the email to Firebase or perform other actions
-
-            // Clear the email input
-            setEmail('');
+            // Clear the email input and reset loading state after a short delay (simulating asynchronous operation)
+            setTimeout(() => {
+                setEmail('');
+                setLoading(false);
+            }, 1000);
         }
     };
 
@@ -53,7 +56,7 @@ const Footer = () => {
         <div style={{ paddingInline: "20px", borderTop: "1px solid grey", marginTop: "20px" }}>
             <div style={{ display: "flex", alignItems: 'center', flexWrap: "wrap-reverse", justifyContent: "space-between", marginTop: "10px" }}>
                 <div>
-                    <img className='footer_pound_img' src={pound} />
+                    <img className='footer_pound_img' src={pound} alt="Pound" />
                     <p className='footer_subtitle'>Our mission at POUND is to enable and motivate every gamer to live a healthy lifestyle.</p>
                     <div>
                         <a href='https://twitter.com/' target='_blank' style={{ cursor: 'pointer' }}>
@@ -78,7 +81,10 @@ const Footer = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <Button onClick={handleSubmit}>Submit</Button>
+                        <Button onClick={handleSubmit} disabled={loading}>
+                            {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
+                            
+                        </Button>
                     </div>
                     {emailError && <p className="text-danger">{emailError}</p>}
                 </div>
