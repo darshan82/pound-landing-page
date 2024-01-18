@@ -1,9 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import "../../App.css"
+import "../../App.css";
+import { addDoc, collection } from 'firebase/firestore';
+
 const RegisterForm = () => {
+  // State to store input values
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    categories: [],
+  });
+
+  // State to store error message
+  const [error, setError] = useState('');
+
+  // Function to handle form submission
+  const handleContinue = async() => {
+    // Check if required fields are filled
+    if (!formData.firstName || !formData.lastName || !formData.email || formData.categories.length === 0) {
+      setError('Please fill in all required fields.');
+      return;
+    }
+
+    try {
+      const docRef = await addDoc(collection(db, "users"),formData);
+       console.log("Document written with ID: ", docRef.id);
+     } catch (e) {
+       console.error("Error adding document: ", e);
+     }
+    // Log data to the console on success
+    console.log('Form data:', formData);
+
+    // Clear any previous errors
+    setError('');
+  };
+
+  // Function to handle checkbox changes
+  const handleCheckboxChange = (game) => {
+    setFormData({
+      ...formData,
+      categories: formData.categories.includes(game)
+        ? formData.categories.filter((category) => category !== game)
+        : [...formData.categories, game],
+    });
+  };
+
   return (
-    <Container className='form_container' >
+    <Container className='form_container'>
       {/* Part 1: Text Titles */}
       <Row className="px-4">
         <Col>
@@ -17,19 +61,19 @@ const RegisterForm = () => {
         <Row className="justify-content-center mb-2">
           <Col xs={6} md={6}>
             <Form.Group controlId="firstName">
-              <Form.Control className='input' type="text" placeholder="First name" />
+              <Form.Control className='input' type="text" placeholder="First name" onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
             </Form.Group>
           </Col>
           <Col xs={6} md={6}>
             <Form.Group controlId="lastName">
-              <Form.Control className='input' type="text" placeholder="Last name" />
+              <Form.Control className='input' type="text" placeholder="Last name" onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
             </Form.Group>
           </Col>
         </Row>
         <Row className="justify-content-center ">
           <Col md={12}>
             <Form.Group controlId="email">
-              <Form.Control className='input' type="email" placeholder="Email" />
+              <Form.Control className='input' type="email" placeholder="Email" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
             </Form.Group>
           </Col>
         </Row>
@@ -63,16 +107,14 @@ const RegisterForm = () => {
               "Warframe",
               "Other"
             ].map((game, index) => (
-              <div style={{ minWidth: "50%", fontSize: "14px", textAlign: "left", color: "grey" }}>
-
+              <div style={{ minWidth: "50%", fontSize: "14px", textAlign: "left", color: "grey" }} key={index}>
                 <Form.Check
-                  key={index}
                   type="checkbox"
                   id={`game${index}`}
                   className='custom-control custom-checkbox'
                   label={game}
-                  // style={{ background: "transparent" }}
                   inline
+                  onChange={() => handleCheckboxChange(game)}
                 />
               </div>
             ))}
@@ -83,11 +125,20 @@ const RegisterForm = () => {
       {/* Part 4: Continue Button */}
       <Row className="justify-content-center mt-3">
         <Col md={12}>
-          <Button className='button w-100' block>
+          <Button className='button w-100' block onClick={handleContinue}>
             Continue
           </Button>
         </Col>
       </Row>
+
+      {/* Error message display */}
+      {error && (
+        <Row className="justify-content-center mt-3">
+          <Col md={12}>
+            <p className="text-danger">{error}</p>
+          </Col>
+        </Row>
+      )}
     </Container>
   );
 };
