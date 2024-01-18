@@ -47,9 +47,9 @@ body {
   font-weight: 500;
 }
 
-.button:hover {
-  background-color: yellowgreen;
-  color: black;
+.button:active , .button:hover    {
+  background-color: yellowgreen !important;
+  color: black !important;
 }
 
 
@@ -200,6 +200,12 @@ body {
   font-weight: 600;
   font-size: 13px;
   line-height: 24px;
+}
+.footer_email_div>button:hover , .footer_email_div>button:active{
+  background-color: yellowgreen !important;
+  color: #1F1F1F !important;
+
+
 }
 
 

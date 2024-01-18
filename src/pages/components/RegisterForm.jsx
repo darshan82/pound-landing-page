@@ -16,25 +16,46 @@ const RegisterForm = () => {
   const [error, setError] = useState('');
 
   // Function to handle form submission
-  const handleContinue = async() => {
+  const handleContinue = async (e) => {
+    e.preventDefault()
     // Check if required fields are filled
-    if (!formData.firstName || !formData.lastName || !formData.email || formData.categories.length === 0) {
-      setError('Please fill in all required fields.');
+    if (!formData.firstName) {
+      setError('Please add your first name.');
       return;
     }
-
+  
+    if (!formData.lastName) {
+      setError('Please add your last name.');
+      return;
+    }
+  
+    if (!formData.email) {
+      setError('Please add your email address.');
+      return;
+    }
+  
+    // Check if email is valid
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+  
+    if (formData.categories.length === 0) {
+      setError('Please select at least one category.');
+      return;
+    }
+  
+    // All required fields are filled, proceed to add the document
     try {
-      const docRef = await addDoc(collection(db, "users"),formData);
-       console.log("Document written with ID: ", docRef.id);
-     } catch (e) {
-       console.error("Error adding document: ", e);
-     }
-    // Log data to the console on success
-    console.log('Form data:', formData);
+      const docRef = await addDoc(collection(db, "users"), formData);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
 
-    // Clear any previous errors
     setError('');
   };
+  
 
   // Function to handle checkbox changes
   const handleCheckboxChange = (game) => {
@@ -77,7 +98,6 @@ const RegisterForm = () => {
             </Form.Group>
           </Col>
         </Row>
-      </Form>
 
       {/* Part 3: Game Options */}
       <Row  >
@@ -115,7 +135,7 @@ const RegisterForm = () => {
                   label={game}
                   inline
                   onChange={() => handleCheckboxChange(game)}
-                />
+                  />
               </div>
             ))}
           </Form>
@@ -125,11 +145,12 @@ const RegisterForm = () => {
       {/* Part 4: Continue Button */}
       <Row className="justify-content-center mt-3">
         <Col md={12}>
-          <Button className='button w-100' block onClick={handleContinue}>
+          <Button  type='submit' className='button w-100' block onClick={handleContinue}>
             Continue
           </Button>
         </Col>
       </Row>
+                  </Form>
 
       {/* Error message display */}
       {error && (
