@@ -102,13 +102,9 @@ p{
 
 .form_container {
   background-color: #212529;
-  /* filter: contrast(24%); */
   width: 380px;
   padding-block: 10px;
-  /* height: 583px; */
   border-radius: 10px;
-  filter: drop-shadow(0 0 2 #FFFFFF);
-  /* box-shadow : 0px 0px 2px  #090D14 ; */
   border-radius: 10;
 }
 

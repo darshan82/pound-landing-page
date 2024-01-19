@@ -17,7 +17,7 @@ const RegisterForm = () => {
 
   // State to store categories
   const [categories, setCategories] = useState([]);
-
+  const [showMessage , setShowMessage] = useState(false)
 
   // State to store error message
   const [error, setError] = useState('');
@@ -33,6 +33,15 @@ const RegisterForm = () => {
     setToastType(type);
     setToastMessage(message);
     setShowToast(true);
+  };
+
+  const showAlert = () => {
+    setShowMessage(true);
+
+    // After 5 seconds, hide the div
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 5000);
   };
 
   // Function to handle form submission
@@ -79,7 +88,7 @@ const RegisterForm = () => {
       // console.log(docRef.id); 
       showToastNotification("success" , "User Registered Successfully")  
       // Additional actions after successful submission if needed
-
+      showAlert()
       // Clear relevant form fields (firstName, lastName, email)
       setFormData({
         firstName: '',
@@ -111,7 +120,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <Container className='form_container'>
+    <Container className='form_container' style={{position:"relative"}}>
       {/* Part 1: Text Titles */}
       <ToastNotification
         show={showToast}
@@ -212,6 +221,17 @@ const RegisterForm = () => {
           </Col>
         </Row>
       )}
+         <div className='form_container' style={{ display:`${showMessage ? "flex"  :"none"}` ,inset: 0, position: "absolute", paddingInline:"25px",  flexDirection:"column", justifyContent: "center",}}>
+        <p className='form_title'>
+          Thank your for applying
+          to join the POUND
+          Team of Beta Testers.
+        </p>
+        <p className='form_subtitle' >
+          We will contact you via email with a response as we
+          gear up for the launch of POUND Beta.
+        </p>
+      </div>
     </Container>
   );
 };
