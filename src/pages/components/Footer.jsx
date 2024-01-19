@@ -79,7 +79,7 @@ const Footer = () => {
                     <div>
                         <img className='footer_pound_img' src={pound} alt="Pound" />
                         <p className='footer_subtitle'>Our mission at POUND is to enable and motivate every gamer to live a healthy lifestyle.</p>
-                        <div>
+                        <div style={{marginTop:"10px"}}>
                             <a href='https://twitter.com/' target='_blank' style={{ cursor: 'pointer' }}>
                                 <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={twitterIcon} alt="Twitter" />
                             </a>
