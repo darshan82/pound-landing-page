@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import RegisterForm from './components/RegisterForm.jsx';
 import NavBar from './components/Navbar.jsx';
-import Main from "../assets/Main.png"
+import Main from "../assets/Home.svg"
 import Footer from './components/Footer.jsx';
 const Register = () => {
   return (
@@ -22,14 +22,17 @@ const Register = () => {
       {/* Last Section: Image and Form */}
       <Container style={{ padding: 0 }} >
         <Row className="mt-2">
-          <Col md={12} lg={8} >
+          <Col md={12} lg={8}  >
+
             <img
               src={Main}
               alt="Image"
-              className="img-fluid"
-            />
+              style={{width:"100%" , objectFit:"contain" }}
+              // className="img-fluid"
+
+              />
           </Col>
-          <Col md={12} lg={4}>
+          <Col md={12} lg={4} className='mt-3'>
             <RegisterForm />
           </Col>
         </Row>

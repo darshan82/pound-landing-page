@@ -122,7 +122,7 @@ const RegisterForm = () => {
       <Row className="px-4">
         <Col>
           <p className='form_title' >Join the team of testers!</p>
-          <p className='form_subtitle' >POUND Beta Testers are committed to contributing to the development of the best fitness app designed specifically for gamers.</p>
+          <p className='form_subtitle' >POUND Beta Testers are committed to contributing in the development of the best fitness app designed specifically for gamers.</p>
         </Col>
       </Row>
 

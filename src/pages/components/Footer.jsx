@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, InputGroup, Button, Spinner } from 'react-bootstrap';
+import { Row, Col, Form, InputGroup, Button, Spinner, DropdownDivider } from 'react-bootstrap';
 import LogoImage from "../../assets/logo.png";
 import discordIcon from "../../assets/discord.png";
 import twitterIcon from "../../assets/twitter.png";
@@ -15,14 +15,14 @@ const Footer = () => {
     const [emailError, setEmailError] = useState('');
     const [loading, setLoading] = useState(false);
     const [showToast, setShowToast] = useState(false);
-  const [toastType, setToastType] = useState('success');
-  const [toastMessage, setToastMessage] = useState('');
+    const [toastType, setToastType] = useState('success');
+    const [toastMessage, setToastMessage] = useState('');
 
-  const showToastNotification = (type, message) => {
-    setToastType(type);
-    setToastMessage(message);
-    setShowToast(true);
-  };
+    const showToastNotification = (type, message) => {
+        setToastType(type);
+        setToastMessage(message);
+        setShowToast(true);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -43,19 +43,19 @@ const Footer = () => {
             const existingEmail = querySnapshot.docs.find(doc => doc.data().email === email);
 
             if (existingEmail) {
-                showToastNotification("error" ,"Email is already in our Subscribers List");
+                showToastNotification("error", "Email is already in our Subscribers List");
                 // Handle duplicate email scenario
             } else {
                 // Create the new document
                 try {
                     const docRef = await addDoc(collection(db, "subscribedUsers"), { email });
-                    if(docRef.id) showToastNotification("success" , "You have Susbcribe Successfully")
+                    if (docRef.id) showToastNotification("success", "You have Susbcribe Successfully")
                 } catch (e) {
-                    showToastNotification("error" , "Some thing went wrong");
+                    showToastNotification("error", "Some thing went wrong");
                     console.log("Error adding document: ", e);
                 }
             }
-            
+
             // Clear the email input and reset loading state after a short delay (simulating asynchronous operation)
             setTimeout(() => {
                 setEmail('');
@@ -65,52 +65,56 @@ const Footer = () => {
     };
 
     return (
-        <div style={{ paddingInline: "20px", borderTop: "1px solid grey", marginTop: "20px" }}>
+        <div style={{ marginTop: "20px" }}>
             <ToastNotification
-            show={showToast}
-            onClose={() => setShowToast(false)}
-            type={toastType}
-            message={toastMessage}
-      />
-            <div style={{ display: "flex", alignItems: 'center', flexWrap: "wrap-reverse", justifyContent: "space-between", marginTop: "10px" }}>
-                <div>
-                    <img className='footer_pound_img' src={pound} alt="Pound" />
-                    <p className='footer_subtitle'>Our mission at POUND is to enable and motivate every gamer to live a healthy lifestyle.</p>
+                show={showToast}
+                onClose={() => setShowToast(false)}
+                type={toastType}
+                message={toastMessage}
+            />
+            <DropdownDivider style={{ height: "1px", opacity: ".06", width: "100%", background: 'white' }} />
+            <div style={{ paddingInline: "30px" }}>
+
+                <div style={{ display: "flex", alignItems: 'center', flexWrap: "wrap-reverse", justifyContent: "space-between" }}>
                     <div>
-                        <a href='https://twitter.com/' target='_blank' style={{ cursor: 'pointer' }}>
-                            <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={twitterIcon} alt="Twitter" />
-                        </a>
-                        <a href='https://www.instagram.com/' target='_blank' style={{ cursor: 'pointer' }}>
-                            <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={instagramIcon} alt="Instagram" />
-                        </a>
-                        <a href='https://discord.com/' target='_blank' style={{ cursor: 'pointer' }}>
-                            <img src={discordIcon} alt="Discord" />
-                        </a>
+                        <img className='footer_pound_img' src={pound} alt="Pound" />
+                        <p className='footer_subtitle'>Our mission at POUND is to enable and motivate every gamer to live a healthy lifestyle.</p>
+                        <div>
+                            <a href='https://twitter.com/' target='_blank' style={{ cursor: 'pointer' }}>
+                                <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={twitterIcon} alt="Twitter" />
+                            </a>
+                            <a href='https://www.instagram.com/' target='_blank' style={{ cursor: 'pointer' }}>
+                                <img width={"26px"} height={"26px"} style={{ marginRight: "10px" }} src={instagramIcon} alt="Instagram" />
+                            </a>
+                            <a href='https://discord.com/' target='_blank' style={{ cursor: 'pointer' }}>
+                                <img src={discordIcon} alt="Discord" />
+                            </a>
+                        </div>
                     </div>
+                    <Form style={{ marginRight: "100px", paddingBlock: 40 }}>
+                        <p style={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: "16px" }}>Subscribe to stay informed.</p>
+                        <div className='footer_email_div'>
+                            <input
+                                type='text'
+                                placeholder='Email'
+                                style={{ background: "transparent", flexGrow: 1 }}
+                                className='input'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <Button type='submit' onClick={handleSubmit} disabled={loading}>
+                                {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
+
+                            </Button>
+                        </div>
+                        {emailError && <p className="text-danger">{emailError}</p>}
+                    </Form>
                 </div>
-                <Form style={{ marginRight: "100px", paddingBlock: 40 }}>
-                    <p style={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: "16px" }}>Subscribe to stay informed.</p>
-                    <div className='footer_email_div'>
-                        <input
-                            type='text'
-                            placeholder='Email'
-                            style={{ background: "transparent", flexGrow: 1 }}
-                            className='input'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <Button  type='submit' onClick={handleSubmit} disabled={loading}>
-                            {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
-                            
-                        </Button>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginTop: "15px", paddingBlock: "10px", }}>
+                    <p className='footer_subtitle' style={{ fontSize: "17px" }}>&copy; 2024 POUND</p>
+                    <div style={{ width: "36px" }}>
+                        <img src={LogoImage} style={{ width: "100%" }} alt="Logo" />
                     </div>
-                    {emailError && <p className="text-danger">{emailError}</p>}
-                </Form>
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between", width: "100%", marginTop: "30px" }}>
-                <p className='footer_subtitle' style={{ fontSize: "17px" }}>&copy; 2024 POUND</p>
-                <div style={{ width: "36px" }}>
-                    <img src={LogoImage} style={{ width: "100%" }} alt="Logo" />
                 </div>
             </div>
         </div>
