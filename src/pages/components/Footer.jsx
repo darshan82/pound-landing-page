@@ -1,6 +1,6 @@
 import React, {  useState } from 'react';
-import { Row, Col, Form, InputGroup, Button, Spinner, DropdownDivider } from 'react-bootstrap';
-import LogoImage from "../../assets/logo.png";
+import { Row, Col, Form, InputGroup, Button, Spinner, DropdownDivider, Container } from 'react-bootstrap';
+import LogoImage from "../../assets/footerLogo.png";
 import discordIcon from "../../assets/discord.png";
 import twitterIcon from "../../assets/twitter.png";
 import instagramIcon from "../../assets/instagram.png";
@@ -93,7 +93,9 @@ const Footer = () => {
                             </a>
                         </div>
                     </div>
-                    <Form style={{ marginRight: "100px", paddingBlock: 40 }}>
+
+                    <Form style={{ paddingBlock:40 }}>
+                   
                         <p style={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: "16px" }}>Subscribe to stay informed.</p>
                         <div className='footer_email_div' >
                             <input
@@ -110,7 +112,7 @@ const Footer = () => {
                             </Button>
                         </div>
                         {emailError && <p className="text-danger">{emailError}</p>}
-                    </Form>
+                                       </Form>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginTop: "15px", paddingBlock: "10px", }}>
                     <p className='footer_subtitle' style={{ fontSize: "17px" }}>&copy; 2024 POUND</p>

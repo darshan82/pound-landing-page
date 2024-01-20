@@ -137,7 +137,7 @@ const RegisterForm = () => {
 
       {/* Part 2: Input Fields */}
       <Form>
-        <Row className="justify-content-center mb-2">
+        <Row className="justify-content-center my-2">
           <Col xs={6} md={6}>
             <Form.Group controlId="firstName">
               <Form.Control className='input' type="text" placeholder="First name" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
@@ -161,7 +161,7 @@ const RegisterForm = () => {
         <Row  >
           <Col>
             <p className='form_categories_title'>What games do you play?</p >
-            <Form className='form_category_container custom-scroll' >
+            <Form className='custom-scroll' >
               {/* Game Options */}
               {[
                 "League of Legends",
@@ -185,7 +185,7 @@ const RegisterForm = () => {
                 "Warframe",
                 "Other"
               ].map((game, index) => (
-                <div style={{ minWidth: "50%", fontSize: "14px", textAlign: "left", color: "grey" }} key={index}>
+                <div style={{ minWidth: "50%", fontSize: "14px", textAlign: "left", color: "rgba(255,255,255,.6)"  }} key={index}>
                   <Form.Check
 
                     checked={categories.includes(game)}
