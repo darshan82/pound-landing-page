@@ -138,14 +138,14 @@ const RegisterForm = () => {
       {/* Part 2: Input Fields */}
       <Form>
         <Row className="justify-content-center my-2">
-          <Col xs={6} md={6}>
+          <Col xs={6} md={6} style={{paddingRight:"5px"}}>
             <Form.Group controlId="firstName">
-              <Form.Control className='input' type="text" placeholder="First name" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
+              <Form.Control style={{margin:0}} className='input'  type="text" placeholder="First name" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
             </Form.Group>
           </Col>
-          <Col xs={6} md={6}>
+          <Col xs={6} md={6} style={{paddingLeft:"5px"}}>
             <Form.Group controlId="lastName">
-              <Form.Control className='input' type="text" placeholder="Last name" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
+              <Form.Control  className='input' type="text" placeholder="Last name" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
             </Form.Group>
           </Col>
         </Row>
