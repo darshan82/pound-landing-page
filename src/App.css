@@ -18,7 +18,8 @@ p{
   background-color: #343a40;
   border: 0;
   min-height: 40px;
-  color: rgb(221, 193, 193);
+  color: rgb(255, 255, 255 , 1);
+  min-width: 10px !important;
 
 }
 
@@ -193,7 +194,7 @@ p{
 .footer_email_div>button {
   color: #1F1F1F;
   background-color: #AEFF03;
-  width: 78px;
+  min-width: 78px;
   border: none;
   border-radius: 10px;
   font-family: Montserrat, sans-serif;
@@ -293,7 +294,7 @@ p{
 .form-check-input {
   background-color: transparent;
   border: 1px solid #242221;
-  outline: nones;
+  outline: none;
   /* Example styles */
 }
 

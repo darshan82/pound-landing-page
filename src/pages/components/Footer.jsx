@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { Row, Col, Form, InputGroup, Button, Spinner, DropdownDivider } from 'react-bootstrap';
 import LogoImage from "../../assets/logo.png";
 import discordIcon from "../../assets/discord.png";
@@ -17,6 +17,7 @@ const Footer = () => {
     const [showToast, setShowToast] = useState(false);
     const [toastType, setToastType] = useState('success');
     const [toastMessage, setToastMessage] = useState('');
+    const [success , setSuccess] = useState("Submit")
 
     const showToastNotification = (type, message) => {
         setToastType(type);
@@ -50,6 +51,7 @@ const Footer = () => {
                 try {
                     const docRef = await addDoc(collection(db, "subscribedUsers"), { email });
                     if (docRef.id) showToastNotification("success", "You have Susbcribe Successfully")
+                    setSuccess("Thank you for Subscribing")
                 } catch (e) {
                     showToastNotification("error", "Some thing went wrong");
                     console.log("Error adding document: ", e);
@@ -93,17 +95,17 @@ const Footer = () => {
                     </div>
                     <Form style={{ marginRight: "100px", paddingBlock: 40 }}>
                         <p style={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: "16px" }}>Subscribe to stay informed.</p>
-                        <div className='footer_email_div'>
+                        <div className='footer_email_div' >
                             <input
                                 type='text'
                                 placeholder='Email'
-                                style={{ background: "transparent", flexGrow: 1 }}
+                                style={{ background: "transparent" , flex:"1"    }}
                                 className='input'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Button type='submit' onClick={handleSubmit} disabled={loading}>
-                                {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
+                                {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : success}
 
                             </Button>
                         </div>
