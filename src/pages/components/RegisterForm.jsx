@@ -206,7 +206,7 @@ const RegisterForm = () => {
         <Row className="justify-content-center mt-3">
           <Col md={12}>
             <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
-              {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Continue"}
+              {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
               
             </Button>
           </Col>
