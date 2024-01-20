@@ -96,7 +96,7 @@ const Footer = () => {
 
                     <Form style={{ paddingBlock:40 }}>
                    
-                        <p style={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: "16px" }}>Subscribe to stay informed.</p>
+                        <p className='email_label'>Subscribe to stay informed.</p>
                         <div className='footer_email_div' >
                             <input
                                 type='text'

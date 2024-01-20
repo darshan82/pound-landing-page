@@ -14,6 +14,8 @@ p{
   background-size: cover;
 }
 
+
+
 .input {
   background-color: #323335;
   border: 0;
@@ -187,9 +189,16 @@ p{
   display: inline-block;
 }
 
+.email_label{
+   font-family: Montserrat; 
+    font-weight: 600; 
+    font-size: 16px;  
+}
+
 .footer_email_div {
-  width: 300px;
+  width: 380px;
   padding: 5px;
+  margin-right: 60px;
   background-color: #0f0f0f;
   border-radius: 10px;
   display: flex;
@@ -248,6 +257,13 @@ p{
     font-size: 33px;
     line-height: 50px;
   }
+  .email_label{
+    text-align: center;
+  }
+  .footer_email_div{
+      margin-right: 0;
+      
+  }
 
   .sub_title {
     font-size: 20px;
@@ -258,7 +274,7 @@ p{
 /* Media query for devices with a maximum width of 480 pixels (typical smartphones) */
 @media only screen and (max-width: 480px) {
   .title {
-    font-size: 24px;
+    font-size: 31px;
     line-height: 24px;
     margin-bottom: 20px;
   }
@@ -274,6 +290,7 @@ p{
     font-size: 10px;
 
   }
+  
   .logo > div{
       width: 143px;
   }
