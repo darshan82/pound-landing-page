@@ -4,6 +4,7 @@ import RegisterForm from './components/RegisterForm.jsx';
 import NavBar from './components/Navbar.jsx';
 import Main from "../assets/Home.svg"
 import Footer from './components/Footer.jsx';
+import ForgiveIdentity from './components/ForgetIdentity.jsx';
 const Register = () => {
   return (
     <div className='main_div' >
@@ -33,7 +34,7 @@ const Register = () => {
               />
           </Col>
           <Col md={12} lg={4} className='mt-3'>
-            <RegisterForm />
+            <ForgiveIdentity />
           </Col>
         </Row>
       </Container>
