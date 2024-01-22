@@ -29,9 +29,9 @@ p {
 }
 
 
-footer {
-    background-color: black;
-}
+
+
+
 
 .main_container {
     width: 50%;
@@ -40,23 +40,31 @@ footer {
 
 }
 
-.footer{
+.footer {
     display: flex;
-    margin-top: 40px; 
+    margin-top: 40px;
     flex-direction: column;
-     align-items: center; 
-    gap: 10px; 
+    align-items: center;
+    gap: 10px;
     padding: 20px;
+    background-color: black;
 }
 
-.social_container{
-    display: flex; 
+.email_content_upper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    align-items: center;
+}
+
+.social_container {
+    display: flex;
     gap: 15px;
 }
 
-.social_container > img{
-        width: 32px;
-       cursor: pointer;
+.social_container>img {
+    width: 32px;
+    cursor: pointer;
 }
 
 header {
