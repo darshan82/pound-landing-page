@@ -5,7 +5,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import ToastNotification from './Alert';
 
-const RegisterForm = () => {
+const RegisterForm = ({onNext}) => {
 
   // State to store input values
   const [formData, setFormData] = useState({
@@ -86,9 +86,10 @@ const RegisterForm = () => {
     try {
       const docRef = await addDoc(collection(db, "users"), { ...formData, categories });
       // console.log(docRef.id); 
-      showToastNotification("success" , "User Registered Successfully")  
+      showToastNotification("success" , "User Registered Successfully")
+      onNext()  
       // Additional actions after successful submission if needed
-      showAlert()
+      // showAlert()
       // Clear relevant form fields (firstName, lastName, email)
       setFormData({
         firstName: '',

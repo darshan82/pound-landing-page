@@ -1,18 +1,20 @@
 body {
   background-color: black;
+  font-family: Montserrat , sans-serif;
+  font-weight: 500;
 }
 p{
   padding: 0;
   margin: 0;
 }
 .main_div {
-  
-  background: linear-gradient(360deg, #000000 0%, #1C1C1C 100%);
+  background: linear-gradient( rgba(28, 28, 28, 1) , rgb(0,0,0));
   color: white;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
+
 
 
 
@@ -40,8 +42,7 @@ p{
 .input::placeholder {
   font-family: Montserrat, sans-serif;
   font-weight: 500;
-  color: white;
-  opacity: .6;
+  color:rgba(255, 255, 255, .6);
   font-size: 16px;
   line-height: 24px;
 }
@@ -159,7 +160,6 @@ p{
   line-height: 32px;
   text-align: center;
 
-  display: inline-block;
 
 }
 
@@ -170,7 +170,6 @@ p{
   font-size: 16px;
   line-height: 28px;
   text-align: center;
-  /* display: inline; */
   margin: 0;
   margin-top: 20px;
 
@@ -180,13 +179,11 @@ p{
 
   font-family: Montserrat, sans-serif;
   font-weight: 500;
-  color: white;
-  opacity: .6;
+  color:rgba(255, 255, 255, .6);
   font-size: 11px;
   line-height: 14px;
   text-align: center;
   padding-inline: 2px;
-  display: inline-block;
 }
 
 .email_label{
@@ -235,7 +232,7 @@ p{
   font-weight: 500;
   font-size: 17px ;
   line-height: 20px;
-  opacity: .6;
+  color:rgba(255, 255, 255, .6);
   
 }
 
@@ -319,8 +316,7 @@ p{
 }
 
 .form-check-input {
-  background-color: white;
-  opacity: .6;
+  color:rgba(255, 255, 255, .6);
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.6);
   outline: none;
@@ -336,4 +332,18 @@ p{
   outline: none;
   box-shadow: none;
   /* Example styles */
+}
+
+.otp_input{
+    width: 1.8rem;
+    height: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 0 0.2rem;
+    color:white;
+    background-color: rgba(255, 255, 255, 0.06);
+    outline: none;
+    border-radius: 10px;
+    border: none;
+  
 }
