@@ -24,7 +24,7 @@ const Stepper = () => {
       {currentComponent === 2 && <SelectAvatar state={state} setState={setState} onNext={handleNext} />}
       {currentComponent === 3 && <SelectedAvatar state={state} setState={setState} onNext={handleNext} />}
       {currentComponent === 4 && <RegisterForm state={state} setState={setState} onNext={handleNext} setResponse={setResponse} />}
-      {currentComponent === 5 && <FormOtp onNext={handleNext} />}
+      {currentComponent === 5 && <FormOtp response={response} onNext={handleNext} />}
       {currentComponent === 6 && <SuccessMessage onNext={handleNext} />}
 
         </div>

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import "../../App.css";
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../../firebase';
 import ToastNotification from './Alert';
 import axios from 'axios';
 
@@ -76,8 +74,9 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
    
       const data = state 
       data.email_verified = false
-      axios.post(`http://18.217.10.162/api/users/website` , data).then((res)=>{
-        setResponse(res?.data?.data)
+      axios.post(`https://18.217.10.162/api/users/website` , data).then((res)=>{
+        setResponse(res?.data?.newUser)
+      
         // showToastNotification("success", "User Registered Successfully")
         onNext()
         setState("")

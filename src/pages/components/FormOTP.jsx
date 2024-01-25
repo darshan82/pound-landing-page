@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React, { useState, useRef } from 'react';
 import { Container, Button, Col, Spinner, Row } from 'react-bootstrap';
+import { Next } from 'react-bootstrap/esm/PageItem';
 
-const FormOtp = ({onNext}) => {
+const FormOtp = ({onNext , response}) => {
     const [otp, setOtp] = useState(Array(6).fill(''));
     const inputRefs = useRef(new Array(6).fill(null).map(() => React.createRef()));
   const [loading, setLoading] = useState(false);
-
+    const [error , setError] = useState("")
     const handleInputChange = (index, value) => {
         const newOtp = [...otp];
         newOtp[index] = value;
@@ -21,10 +23,35 @@ const FormOtp = ({onNext}) => {
         }
     };
 
-    const handleSubmit = async () => {
+    const compareOtp = (otp)=>{
+      console.log(otp , response?.otp)
+        if(otp){
+          if(Number(response?.otp) === Number(otp.join(""))){
+           
+            return true
+          }
+        }
+        return false
+    }
+
+    const handleSubmit = () => {
         // Assuming you want to add the OTP to Firestore
-        console.log(otp.join(""))
-        onNext()
+        if(response){
+       let isOtpValid  =  compareOtp(otp)
+       if(isOtpValid){
+         axios.post(`https://18.217.10.162/api/users/website?otp=${otp.join("")}&_id=${response?._id} `).then((res)=>{
+                    onNext()
+        }).catch((err)=>setError(err?.response?.data?.message || "Some thing went wrong"))
+      }
+       else{
+        setError("Invaild OTP")
+       } 
+      }
+       else{
+         console.log("Response is missing")
+       }
+        
+        
     };
 
     return (
@@ -51,6 +78,9 @@ const FormOtp = ({onNext}) => {
                         />
                         ))}
             </form>
+                       {error && 
+                        <p style={{color:"red" , textAlign:"center"}}>{error}</p>
+                      }
                         </div>
                         </Row>
         <Row className="justify-content-center mt-3">
