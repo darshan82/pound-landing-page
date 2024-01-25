@@ -78,13 +78,13 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
       data.email_verified = false
       axios.post(`http://18.217.10.162/api/users/website` , data).then((res)=>{
         setResponse(res?.data?.data)
-        showToastNotification("success", "User Registered Successfully")
+        // showToastNotification("success", "User Registered Successfully")
+        onNext()
         setState("")
         setError("");
-        onNext()
       }).catch((err)=>{
-        err?.response?.data?.message
-        showToastNotification("error", 'Some thing Went Wrong');
+
+        showToastNotification("error", err?.response?.data?.message ? err?.response?.data?.message :"Some thing went Wrong" );
       
       })
      
