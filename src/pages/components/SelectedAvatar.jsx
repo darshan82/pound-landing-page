@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
-
+import { Avatar } from '@readyplayerme/visage';
 import girl_avatar from "/src/assets/girl_avatar.png"
-const SelectedAvatar = ({ onNext }) => {
+const SelectedAvatar = ({ onNext, state, setState }) => {
 
-
+    const [tag, setTag] = useState()
+    const [error , setError] = useState()
     // Function to handle form submission
     const handleContinue = (e) => {
-            e.preventDefault();
-            console.log("clicked,'............")
+        e.preventDefault();
+        if (!tag) {
+            setError('Please add your first name.');
+            return;
+        }
+        setState((prev) => {
+            return { ...prev, tag }
+        })
         onNext()
 
     };
 
-    // Function to handle checkbox changes
-
+    const handleChange = (e) => {
+        setTag(e.target.value)
+    }
 
     return (
         <Container className='form_container' style={{ position: "relative", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)" }}>
@@ -28,15 +36,24 @@ const SelectedAvatar = ({ onNext }) => {
                 <Col>
                     <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%" }}>
                         <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Player Tag</p>
-                        <input className='input' placeholder='Insert player tag' style={{ background: "transparent" }} />
+                        <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent" }} />
                     </div>
+                    {!error ? 
                     <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)", paddingInline: '10px' }}>Must be xx characters and xxx</p>
+                   
+                    : 
+                    <p style={{ fontSize: "13px", color: "red", paddingInline: '10px' }}>Tag is required</p>
+                   }
                 </Col>
             </Row>
             {/* Part 2: Input Fields */}
             <Form>
                 <Row className="justify-content-center mt-2" style={{ width: "100%", height: "280px" }}>
-                    <Image style={{ objectFit: "contain", height: "284px" }} src={girl_avatar} />
+                    {state.avatar ?
+                        <Avatar style={{ height: "100%", width: "100%", background: "green", padding: 0, margin: 0 }} modelSrc={state?.avatar} />
+                        :
+                        <Image style={{ objectFit: "contain", height: "284px" }} src={girl_avatar} />
+                    }
                 </Row>
 
                 {/* Part 4: Continue Button */}

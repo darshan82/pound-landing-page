@@ -4,20 +4,12 @@ import "../../App.css";
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import ToastNotification from './Alert';
+import axios from 'axios';
 
-const RegisterForm = ({onNext}) => {
-
-  // State to store input values
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-  });
+const RegisterForm = ({ onNext, state, setState , setResponse }) => {
 
 
-  // State to store categories
-  const [categories, setCategories] = useState([]);
-  const [showMessage , setShowMessage] = useState(false)
+  // const [showMessage, setShowMessage] = useState(false)
 
   // State to store error message
   const [error, setError] = useState('');
@@ -35,20 +27,18 @@ const RegisterForm = ({onNext}) => {
     setShowToast(true);
   };
 
-  const showAlert = () => {
-    setShowMessage(true);
+  // const showAlert = () => {
+  //   setShowMessage(true);
 
-    // After 5 seconds, hide the div
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 5000);
-  };
+  //   // After 5 seconds, hide the div
+  //   setTimeout(() => {
+  //     setShowMessage(false);
+  //   }, 5000);
+  // };
 
   // Function to handle form submission
-  const handleContinue = async (e) => {
+  const handleContinue = (e) => {
     e.preventDefault();
-    
-
     // Check if already loading, prevent multiple submissions
     if (loading) {
       return;
@@ -58,70 +48,67 @@ const RegisterForm = ({onNext}) => {
     setLoading(true);
 
     // Check if required fields are filled
-    if (!formData.firstName) {
+    if (!state.first_name) {
       setError('Please add your first name.');
       setLoading(false);
       return;
     }
 
-    if (!formData.lastName) {
+    if (!state.last_name) {
       setError('Please add your last name.');
       setLoading(false);
       return;
     }
 
-    if (!formData.email) {
+    if (!state.email) {
       setError('Please add your email address.');
       setLoading(false);
       return;
     }
 
-    if (categories.length === 0) {
+    if (!state?.gamesToplay?.length) {
       setError('Please select at least one category.');
       setLoading(false);
       return;
     }
 
     // All required fields are filled, proceed to add the document
-    try {
-      const docRef = await addDoc(collection(db, "users"), { ...formData, categories });
-      // console.log(docRef.id); 
-      showToastNotification("success" , "User Registered Successfully")
-      onNext()  
-      // Additional actions after successful submission if needed
-      // showAlert()
-      // Clear relevant form fields (firstName, lastName, email)
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-      });
-
-      // Clear categories
-      setCategories([]);
-
-      // Clear error
-      setError('');
-    } catch (e) {
-      console.error("Error adding document: ", e);
-      showToastNotification("error",'Some thing Went Wrong');
+   
+      const data = state 
+      data.email_verified = false
+      axios.post(`http://18.217.10.162/api/users/website` , data).then((res)=>{
+        setResponse(res?.data?.data)
+        showToastNotification("success", "User Registered Successfully")
+        setState("")
+        setError("");
+        onNext()
+      }).catch((err)=>{
+        err?.response?.data?.message
+        showToastNotification("error", 'Some thing Went Wrong');
+      
+      })
+     
+      setLoading(false);
+   
     }
-    setLoading(false); 
 
-    // Set loading to false after submission
-  };
-
-  // Function to handle checkbox changes
   const handleCheckboxChange = (game) => {
-    setCategories((prevCategories) => (
-      prevCategories.includes(game)
-        ? prevCategories.filter((category) => category !== game)
-        : [...prevCategories, game]
-    ));
+    setState((prev) => {
+      return {
+        ...prev,
+        gamesToplay: prev?.gamesToplay?.includes(game) ? prev?.gamesToplay?.filter((item) => item !== game) : [...prev.gamesToplay, game]
+      }
+    })
   };
+
+  const handleChange = (e) => {
+    setState((prev) => {
+      return { ...prev, [e.target.name]: e.target.value }
+    })
+  }
 
   return (
-    <Container className='form_container' style={{position:"relative"}}>
+    <Container className='form_container' style={{ position: "relative" }}>
       {/* Part 1: Text Titles */}
       <ToastNotification
         show={showToast}
@@ -139,21 +126,21 @@ const RegisterForm = ({onNext}) => {
       {/* Part 2: Input Fields */}
       <Form>
         <Row className="justify-content-center my-2">
-          <Col xs={6} md={6} style={{paddingRight:"5px"}}>
-            <Form.Group controlId="firstName">
-              <Form.Control style={{margin:0}} className='input'  type="text" placeholder="First name" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
+          <Col xs={6} md={6} style={{ paddingRight: "5px" }}>
+            <Form.Group controlId="first_name">
+              <Form.Control name="first_name" style={{ margin: 0 }} className='input' type="text" placeholder="First name" value={state?.first_name} onChange={handleChange} />
             </Form.Group>
           </Col>
-          <Col xs={6} md={6} style={{paddingLeft:"5px"}}>
-            <Form.Group controlId="lastName">
-              <Form.Control  className='input' type="text" placeholder="Last name" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
+          <Col xs={6} md={6} style={{ paddingLeft: "5px" }}>
+            <Form.Group controlId="last_name">
+              <Form.Control name='last_name' className='input' type="text" placeholder="Last name" value={state?.last_name} onChange={handleChange} />
             </Form.Group>
           </Col>
         </Row>
         <Row className="justify-content-center ">
           <Col md={12}>
-            <Form.Group controlId="email">
-              <Form.Control className='input' type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+            <Form.Group  controlId="email">
+              <Form.Control name="email" className='input' type="email" placeholder="Email" value={state?.email} onChange={handleChange} />
             </Form.Group>
           </Col>
         </Row>
@@ -186,10 +173,9 @@ const RegisterForm = ({onNext}) => {
                 "Warframe",
                 "Other"
               ].map((game, index) => (
-                <div style={{ minWidth: "50%", fontSize: "14px", textAlign: "left", color: "rgba(255,255,255,.6)"  }} key={index}>
+                <div style={{ minWidth: "50%", fontSize: "14px", textAlign: "left", color: "rgba(255,255,255,.6)" }} key={index}>
                   <Form.Check
-
-                    checked={categories.includes(game)}
+                    checked={!!state?.gamesToplay && state?.gamesToplay?.includes(game)}
                     type="checkbox"
                     id={`game-${index}`}
                     className='custom-control custom-checkbox'
@@ -208,7 +194,7 @@ const RegisterForm = ({onNext}) => {
           <Col md={12}>
             <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
               {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
-              
+
             </Button>
           </Col>
         </Row>
@@ -222,6 +208,7 @@ const RegisterForm = ({onNext}) => {
           </Col>
         </Row>
       )}
+      {/*
          <div className='form_container' style={{ display:`${showMessage ? "flex"  :"none"}` ,inset: 0, position: "absolute", paddingInline:"25px",  flexDirection:"column", justifyContent: "center",}}>
         <p className='form_title'>
           Thank your for applying
@@ -232,7 +219,7 @@ const RegisterForm = ({onNext}) => {
           We will contact you via email with a response as we
           gear up for the launch of POUND Beta.
         </p>
-      </div>
+      </div> */}
     </Container>
   );
 };

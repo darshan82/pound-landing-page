@@ -8,17 +8,12 @@ import SuccessMessage from '../SuccessMessage';
 // Import other step components...
 
 const Stepper = () => {
-    // const [currentStep, setCurrentStep] = useState(2);
     const [currentComponent, setCurrentComponent] = useState(1);
+    const [state , setState] = useState()
+    const [response , setResponse] = useState()
     const handleNext = () => {
       setCurrentComponent((prevComponent) => (prevComponent < 6 ? prevComponent + 1 : prevComponent));
     };
-  
-    // const totalSteps = 6;
-
-    // const handleButtonClick = () => {
-    //     setCurrentStep((prevStep) => (prevStep < totalSteps ? prevStep + 1 : prevStep));
-    // };
 
 
     return (
@@ -26,16 +21,12 @@ const Stepper = () => {
 
 
       {currentComponent === 1 && <ForgiveIdentity onNext={handleNext} />}
-      {currentComponent === 2 && <SelectAvatar onNext={handleNext} />}
-      {currentComponent === 3 && <SelectedAvatar onNext={handleNext} />}
-      {currentComponent === 4 && <RegisterForm onNext={handleNext} />}
+      {currentComponent === 2 && <SelectAvatar state={state} setState={setState} onNext={handleNext} />}
+      {currentComponent === 3 && <SelectedAvatar state={state} setState={setState} onNext={handleNext} />}
+      {currentComponent === 4 && <RegisterForm state={state} setState={setState} onNext={handleNext} setResponse={setResponse} />}
       {currentComponent === 5 && <FormOtp onNext={handleNext} />}
       {currentComponent === 6 && <SuccessMessage onNext={handleNext} />}
 
-
-            {/* <button onClick={handleButtonClick} disabled={currentStep === totalSteps}>
-                {currentStep === totalSteps ? 'Finish' : 'Next'}
-            </button> */}
         </div>
     );
 };
