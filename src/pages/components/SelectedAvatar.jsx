@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
 import { Avatar } from '@readyplayerme/visage';
@@ -6,6 +6,7 @@ import girl_avatar from "/src/assets/girl_avatar.png"
 const SelectedAvatar = ({ onNext, state, setState }) => {
 
     const [tag, setTag] = useState()
+    const [loading , setLoading] = useState(false)
     const [error , setError] = useState()
     // Function to handle form submission
     const handleContinue = (e) => {
@@ -21,9 +22,15 @@ const SelectedAvatar = ({ onNext, state, setState }) => {
 
     };
 
+    useEffect(()=>{
+        console.log(loading)
+    },[loading])
+
     const handleChange = (e) => {
         setTag(e.target.value)
     }
+
+
 
     return (
         <Container className='form_container' style={{ position: "relative", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)" }}>
@@ -49,18 +56,21 @@ const SelectedAvatar = ({ onNext, state, setState }) => {
             {/* Part 2: Input Fields */}
             <Form>
                 <Row className="justify-content-center mt-2" style={{ width: "100%", height: "280px" }}>
-                    {state.avatar ?
-                        <Avatar style={{ height: "100%", width: "100%", background: "green", padding: 0, margin: 0 }} modelSrc={state?.avatar} />
-                        :
-                        <Image style={{ objectFit: "contain", height: "284px" }} src={girl_avatar} />
-                    }
+                    {state.avatar  && 
+                        <Avatar  onLoading={()=>{setLoading(true)}} onLoaded={()=>{setLoading(false)}}   scale={1.1}   fov={40} shadows={true}   cameraInitialDistance={3}  modelSrc={state?.avatar} />
+                        //  : 
+                        //  <Image style={{ objectFit: "contain", height: "284px" }} src={girl_avatar} /> 
+                         }
+
+                        
+                      
                 </Row>
 
                 {/* Part 4: Continue Button */}
                 <Row className="justify-content-center mt-3">
                     <Col md={12}>
-                        <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={false}>
-                            {false ? <Spinner animation="border" size="sm" className="mr-2" /> : "Continue"}
+                        <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
+                            {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Continue"}
 
                         </Button>
                     </Col>

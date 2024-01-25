@@ -24,7 +24,7 @@ function SelectAvatar({onNext , state , setState})
 
     const handleOnAvatarExported = (event) =>
     {
-        console.log(`Avatar URL is: ${event.data.url}`);
+        console.log(`Avatar URL is: ${JSON.stringify(event?.data)}`);
         setState((prevState)=>{
             return {...prevState , avatar:event.data.url} 
         })
