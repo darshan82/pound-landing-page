@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@readyplayerme/react-avatar-creator": "^0.4.0",
+    "@readyplayerme/visage": "^5.0.0",
+    "axios": "^1.6.6",
     "firebase": "^10.7.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.2",
