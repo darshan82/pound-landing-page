@@ -96,10 +96,15 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
     setState((prev) => {
       return {
         ...prev,
-        gamesToplay: prev?.gamesToplay?.includes(game) ? prev?.gamesToplay?.filter((item) => item !== game) : [...prev.gamesToplay, game]
-      }
-    })
+        gamesToplay: prev?.gamesToplay
+          ? prev.gamesToplay.includes(game)
+            ? prev.gamesToplay.filter((item) => item !== game)
+            : [...prev.gamesToplay, game]
+          : [game],
+      };
+    });
   };
+  
 
   const handleChange = (e) => {
     setState((prev) => {
