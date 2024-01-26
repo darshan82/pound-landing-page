@@ -4,16 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pounding Email Templete</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <title>Pounding Email Template</title>
     <style>
         body {
             background: rgba(0, 0, 0, .7);
             color: white;
-            padding: 0px;
+            padding: 0;
             margin: 0 !important;
             font-family: Montserrat, sans-serif;
         }
@@ -26,12 +22,20 @@
             padding: 0;
         }
 
+        .main_container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            background-color: rgba(28, 28, 28, 1);
+        }
+
         .header {
+            background-color: rgba(28, 28, 28, 1);
+            padding: 10px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 10px 16px;
-            border-bottom: .25px solid rgba(255, 255, 255, .2);
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
         }
 
         .header_logo_container {
@@ -40,110 +44,147 @@
             gap: 10px;
         }
 
-
-
-
-
-
-        .main_container {
-            width: 50%;
-            margin: auto;
-            background-color: rgba(28, 28, 28, 1);
-
+        .header_logo_container img {
+            max-height: 100%;
+            /* Ensure the logo doesn't exceed the height of the container */
         }
 
+        .email_content_upper {
+            text-align: center;
+            padding: 20px;
+        }
+
+
+
         .footer {
-            display: flex;
-            margin-top: 40px;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            text-align: center;
             padding: 20px;
             background-color: black;
         }
 
-        .email_content_upper {
-            display: flex;
-            flex-direction: column;
-            margin-top: 40px;
-            align-items: center;
-        }
-
         .social_container {
-            display: flex;
-            gap: 15px;
+            display: inline-block;
+            margin-top: 10px;
         }
 
-        .social_container>img {
-            width: 32px;
+        .social_container img {
             cursor: pointer;
-        }
-
-        header {
-            padding: 10px 16px;
-        }
-
-        .title_otp {
-            font-weight: 700;
-            color: white;
-            font-size: 24px;
-            text-align: center;
-        }
-
-        @media (max-width: 757px) {
-            .main_container {
-                width: 100%;
-            }
+            margin-right: 10px;
         }
     </style>
 </head>
 
 <body>
-    <main class="main_container">
-        <header class="header">
-            <div class="header_logo_container">
-                <img height="34px" src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116107826-logo.png" />
-                <img src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116066644-logo_text.png">
-            </div>
-            <p>1/1/2020</p>
+    <table class="main_container" cellpaddingLeft="0" cellspacing="0">
+        <tr>
+            <td class="header" style="background-color: rgba(28, 28, 28, 1); padding: 10px;">
+                <table width="100%" cellpadding="2" cellspacing="6">
+                    <tr>
+                        <td style="text-align: left;">
+                            <div class="header_logo_container" style=" width: 100%;">
+                                <img height="34px"
+                                    src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116107826-logo.png" />
+                                <div style="height: 18px; margin-left:10px ; margin-top:8px;">
+                                    <img height="18px"
+                                        src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116066644-logo_text.png" />
+                                </div>
+                            </div>
+                        </td>
+                        <td style="text-align: right;">
+                            <p style="margin: 0;">1/1/2020</p>
+                        </td>
 
+                    </tr>
+                </table>
+        <tr>
+            <td class="email_content_upper" style="text-align: center; vertical-align: middle;">
 
-        </header>
+        <tr>
 
-        <body>
-            <div class="email_content_upper">
-                <img width="180px" height="40px" src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116030298-logo_pound.png" />
+            <td style="text-align: center;">
+                <img width="180px" height="40px"
+                    src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116030298-logo_pound.png" />
+            </td>
+        </tr>
+        <tr>
+
+            <td style="text-align: center;">
+
                 <img width="88px" src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706115957875-girl_avatar.png" />
-                <p style="font-weight: 700;">[ Player Tag ]</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
 
-            </div>
-            <div style="margin-top: 30px; padding: 20px;">
-                <p class="title_otp">Verification Code</p>
-                <p class="title_otp" style="font-size: 27px;  letter-spacing: 12px;">123456</p>
-                <p style="text-align: center;">
+                <p style="font-weight: 700;">[ Player Tag ]</p>
+            </td>
+        </tr>
+        </td>
+        </tr>
+        <tr>
+        <tr>
+            <td style="margin-top: 30px; padding: 20px; text-align: center;">
+                <p style="font-weight: 700; font-size: 24px; color: white;">Verification Code</p>
+                <p style="font-size: 27px; letter-spacing: 12px; color: white;">123456</p>
+                <p>
                     Paste this code into the form on the website to authenticate your email.
                 </p>
-                <p style="text-align: center; font-weight: 700;">
+                <p style="font-weight: 700;">
                     If you didn’t try to join the POUND team of testers, this was probably sent by mistake, and you can
-                    simply ignore this email. You can always contact us
-                    for more help.</p>
+                    simply ignore this email. You can always contact us for more help.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <tbody class="footer">
+                <!-- <td class="footer"> -->
 
-            </div>
-        </body>
-        <footer class="footer">
-            <p style="color: white;">Follow Us</p>
-            <div class="social_container">
-                <img src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116157278-twitter_icon.png" alt="twit_logo" />
-                <img src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116001010-insta_icon.png" alt="twit_logo" />
-                <img src="public/discord_icon.png" alt="twit_logo" />
-            </div>
-            <img width="34px" style="margin-top: 20px;" src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116107826-logo.png" alt="logo" />
-            <p>POUND Gaming</p>
+                <tr style="text-align: center;">
+                    <td>
+                        <p style="color: white;">Follow Us</p>
+                    </td>
+                <tr>
+                    <td style="text-align: center;">
 
+                        <div class="social_container">
+                            <div style="height: 31px; display: inline-block; ">
 
-        </footer>
+                                <img height="100%"
+                                    src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116157278-twitter_icon.png"
+                                    alt="twit_logo" />
+                            </div>
+                            <div style="height: 31px; object-fit: contain; display: inline-block;">
 
-    </main>
+                                <img height="100%"
+                                    src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116001010-insta_icon.png"
+                                    alt="twit_logo" />
+                            </div>
+                            <div style="height: 31px; object-fit: contain; display: inline-block;">
+
+                                <img height="100%"
+                                    src="https://stag-tcm.s3.amazonaws.com/1706115900052-discord_icon.png"
+                                    alt="twit_logo" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>
+
+                        <img width="34px" style="margin-top: 20px;"
+                            src="https://stag-tcm.s3.eu-west-2.amazonaws.com/1706116107826-logo.png" alt="logo" />
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>
+
+                        <p>POUND Gaming</p>
+                    </td>
+                </tr>
+                <!-- </td> -->
+            </tbody>
+        </tr>
+    </table>
 </body>
 
 </html>
