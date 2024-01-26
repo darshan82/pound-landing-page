@@ -56,11 +56,11 @@ const SelectedAvatar = ({ onNext, state, setState }) => {
             {/* Part 2: Input Fields */}
             <Form>
                 <Row className="justify-content-center mt-2" style={{ width: "100%", height: "280px" }}>
-                     {state.avatar  ? 
+                     {state.avatar && 
                          <Avatar  onLoading={()=>{setLoading(true)}} onLoaded={()=>{setLoading(false)}}   scale={1.1}   fov={40} shadows={true}   cameraInitialDistance={3}  modelSrc={state?.avatar} />
                         
-                         : 
-                         <Image style={{ objectFit: "contain", height: "284px" }} src={girl_avatar} />  
+                        //  : 
+                        //  <Image style={{ objectFit: "contain", height: "284px" }} src={girl_avatar} />  
                           } 
 
                         
