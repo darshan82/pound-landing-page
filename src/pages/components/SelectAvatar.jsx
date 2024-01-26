@@ -47,7 +47,7 @@ function SelectAvatar({onNext , state , setState})
             {/* <div style={{height:"430px"}}> */}
 
             <AvatarCreator
-                subdomain="demo"
+                subdomain="https://pound-gaming.readyplayer.me?frameApi"
                 config={config}
                 style={style}
                 onAvatarExported={handleOnAvatarExported}
