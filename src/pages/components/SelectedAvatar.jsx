@@ -6,7 +6,7 @@ import { Avatar } from '@readyplayerme/visage';
 const SelectedAvatar = ({ onNext, state, setState }) => {
 
     const [tag, setTag] = useState()
-    const [loading , setLoading] = useState(false)
+    const [loading , setLoading] = useState(true)
     const [error , setError] = useState()
     // Function to handle form submission
     const handleContinue = (e) => {
@@ -57,11 +57,9 @@ const SelectedAvatar = ({ onNext, state, setState }) => {
             <Form>
                 <Row className="justify-content-center mt-2" style={{ width: "100%", height: "280px" }}>
                      {state.avatar && 
-                         <Avatar  onLoading={()=>{setLoading(true)}} onLoaded={()=>{setLoading(false)}}   scale={1.1}   fov={40} shadows={true}   cameraInitialDistance={3}  modelSrc={state?.avatar} />
+                         <Avatar    onLoaded={()=>setLoading(false)}  scale={1.1}   fov={40} shadows={true}   cameraInitialDistance={3}  modelSrc={state?.avatar} />
+                     }
                         
-                        //  : 
-                        //  <Image style={{ objectFit: "contain", height: "284px" }} src={girl_avatar} />  
-                          } 
 
                         
                       
