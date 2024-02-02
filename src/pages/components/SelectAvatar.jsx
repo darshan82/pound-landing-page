@@ -13,9 +13,9 @@ const config = {
     language: "en",
 };
 
-const style = {padding:0, width: "100%", height: "100%", border: "none", margin: 0 , borderRadius:"10px" };
+const style = { padding: 0, width: "100%", height: "100%", border: "none", margin: 0, borderRadius: "10px" };
 
-function SelectAvatar({onNext , state , setState})
+function SelectAvatar({ onNext, state, setState })
 {
     const handleOnUserSet = (event) =>
     {
@@ -24,9 +24,13 @@ function SelectAvatar({onNext , state , setState})
 
     const handleOnAvatarExported = (event) =>
     {
-        console.log(`Avatar URL is: ${JSON.stringify(event?.data)}`);
-        setState((prevState)=>{
-            return {...prevState , avatar:event.data.url} 
+
+        const avatar3DUrl = event.data.url; // This is the 3D avatar URL
+        const avatarId = avatar3DUrl.split('/').pop().split('.')[0]; // Extract the avatar ID from the URL
+        const avatar2DUrl = `https://models.readyplayer.me/${avatarId}.png`;
+        setState((prevState) =>
+        {
+            return { ...prevState, avatar: event.data.url, avatar2DUrl }
         })
         onNext()
 
@@ -40,10 +44,10 @@ function SelectAvatar({onNext , state , setState})
     const handleAssetUnlocked = (event) =>
     {
         console.log(`Asset unlocked is: ${event.data.assetId}`);
-            
+
     };
     return (
-        <Container className='form_container' style={{ display:"flex" , flexDirection:"column", height: "530px", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)" ,padding:0}}>
+        <Container className='form_container' style={{ display: "flex", flexDirection: "column", height: "530px", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)", padding: 0 }}>
             {/* <div style={{height:"430px"}}> */}
 
             <AvatarCreator
@@ -55,8 +59,8 @@ function SelectAvatar({onNext , state , setState})
                 onAssetUnlock={handleAssetUnlocked}
                 onUserSet={handleOnUserSet}
             />
-                {/* </div> */}
-                {/* <div className='py-3 px-2'>
+            {/* </div> */}
+            {/* <div className='py-3 px-2'>
 
                 <Button  type='submit' className='button w-100' block  disabled={false}>
               {false ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}

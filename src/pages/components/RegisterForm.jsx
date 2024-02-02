@@ -74,6 +74,7 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
    
       const data = state 
       data.email_verified = false
+      console.log(data)
       axios.post(`https://18.217.10.162/api/users/website` , data).then((res)=>{
         setResponse(res?.data?.newUser)
       
