@@ -104,6 +104,7 @@ const Footer = () => {
                                 style={{ background: "transparent" , flex:"1"    }}
                                 className='input'
                                 value={email}
+                                autocomplete="off"
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Button type='submit' onClick={handleSubmit} disabled={loading}>

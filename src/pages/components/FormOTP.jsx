@@ -85,6 +85,7 @@ const FormOtp = ({ onNext, response }) =>
                 key={index}
                 type="text"
                 value={digit}
+                autocomplete="off"
                 onChange={(e) => handleInputChange(index, e.target.value)}
                 maxLength="1"
                 ref={(el) => (inputRefs.current[index] = el)}

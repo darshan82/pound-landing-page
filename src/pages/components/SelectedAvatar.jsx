@@ -64,7 +64,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                         <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Player Tag</p>
                         <div style={{ display: "flex" }}>
                             <input
-
+                                autocomplete="off"
                                 onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", width: error && 260, paddingRight: error && 10 }} />
                             {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>}
                         </div>

@@ -147,19 +147,19 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
         <Row className="justify-content-center my-2">
           <Col xs={6} md={6} style={{ paddingRight: "5px" }}>
             <Form.Group controlId="first_name">
-              <Form.Control name="first_name" style={{ margin: 0 }} className='input' type="text" placeholder="First name" value={state?.first_name} onChange={handleChange} />
+              <Form.Control autocomplete="off" name="first_name" style={{ margin: 0 }} className='input' type="text" placeholder="First name" value={state?.first_name} onChange={handleChange} />
             </Form.Group>
           </Col>
           <Col xs={6} md={6} style={{ paddingLeft: "5px" }}>
             <Form.Group controlId="last_name">
-              <Form.Control name='last_name' className='input' type="text" placeholder="Last name" value={state?.last_name} onChange={handleChange} />
+              <Form.Control autocomplete="off" name='last_name' className='input' type="text" placeholder="Last name" value={state?.last_name} onChange={handleChange} />
             </Form.Group>
           </Col>
         </Row>
         <Row className="justify-content-center ">
           <Col md={12}>
             <Form.Group controlId="email">
-              <Form.Control name="email" className='input' type="email" placeholder="Email" value={state?.email} onChange={handleChange} />
+              <Form.Control autocomplete="off" name="email" className='input' type="email" placeholder="Email" value={state?.email} onChange={handleChange} />
             </Form.Group>
           </Col>
         </Row>
