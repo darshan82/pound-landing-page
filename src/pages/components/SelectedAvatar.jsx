@@ -63,8 +63,8 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                     <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%" }}>
                         <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Player Tag</p>
                         <div style={{ display: "flex" }}>
-                            <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent" }} />
-
+                            <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent",width:240 }} />
+                            {/* <div>XXXX</div> */}
                         </div>
                     </div>
                     {!error ?
@@ -78,7 +78,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
             <Form>
                 <Row className="justify-content-center" style={{ height: "350px", marginBottom: 20 }}>
                     {state?.avatar &&
-                        <img style={{ width: 350, height: 350, }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
+                        <img style={{ width: 280, height: 280, }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
                     }
                 </Row>
 
