@@ -76,7 +76,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
             </Row>
             {/* Part 2: Input Fields */}
             <Form>
-                <Row className="justify-content-center" style={{ height: "350px", marginBottom: 20 }}>
+                <Row className="justify-content-center" style={{ height: "280px", marginBottom: 20 }}>
                     {state?.avatar &&
                         <img style={{ width: 280, height: 280, }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
                     }
