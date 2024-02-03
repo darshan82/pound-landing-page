@@ -22,7 +22,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
         }
         setLoading(true)
 
-        axios.post(`http://localhost:3005/api/users/website?username=${tag}`).then((res) =>
+        axios.post(`https://18.217.10.162/api/users/website?username=${tag}`).then((res) =>
         {
             setLoading(false)
 
@@ -62,7 +62,10 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                 <Col>
                     <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%" }}>
                         <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Player Tag</p>
-                        <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent" }} />
+                        <div style={{ display: "flex" }}>
+                            <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent" }} />
+
+                        </div>
                     </div>
                     {!error ?
                         <p style={{ fontSize: "10px", color: "rgba(255,255,255,.3)", paddingInline: '10px', marginTop: 5 }}>Can contain between 5 & 15 alphanumeric characters</p>
@@ -73,7 +76,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
             </Row>
             {/* Part 2: Input Fields */}
             <Form>
-                <Row className="justify-content-center" style={{ height: "350px",marginBottom:20 }}>
+                <Row className="justify-content-center" style={{ height: "350px", marginBottom: 20 }}>
                     {state?.avatar &&
                         <img style={{ width: 350, height: 350, }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
                     }
