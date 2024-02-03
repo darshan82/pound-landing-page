@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
-import { Avatar } from '@readyplayerme/visage';
 import axios from 'axios';
-
+import { RxCross1 } from "react-icons/rx";
 // import girl_avatar from "/src/assets/girl_avatar.png"
 const SelectedAvatar = ({ onNext, state, setState }) =>
 {
@@ -60,11 +59,14 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
             </Row>
             <Row className="px-4 mt-4">
                 <Col>
-                    <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%" }}>
+
+                    <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%", border: error && "1px solid red" }}>
                         <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Player Tag</p>
                         <div style={{ display: "flex" }}>
-                            <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent",width:240 }} />
-                            {/* <div>XXXX</div> */}
+                            <input
+
+                                onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", width: error && 260, paddingRight: error && 10 }} />
+                            {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>}
                         </div>
                     </div>
                     {!error ?
