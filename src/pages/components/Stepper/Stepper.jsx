@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import FormOtp from '../FormOTP';
 import SelectedAvatar from '../SelectedAvatar';
 import SelectAvatar from '../SelectAvatar';
 import RegisterForm from '../RegisterForm';
 import ForgiveIdentity from '../ForgetIdentity';
 import SuccessMessage from '../SuccessMessage';
-// Import other step components...
+import ErrorMessage from '../ErrorMessage';
 
-const Stepper = () => {
-    const [currentComponent, setCurrentComponent] = useState(1);
-    const [state , setState] = useState()
-    const [response , setResponse] = useState()
-    const handleNext = () => {
-      setCurrentComponent((prevComponent) => (prevComponent < 6 ? prevComponent + 1 : prevComponent));
-    };
+const Stepper = () =>
+{
+  const [currentComponent, setCurrentComponent] = useState(1);
+  const [state, setState] = useState()
+  const [response, setResponse] = useState()
+  const handleNext = () =>
+  {
+    setCurrentComponent((prevComponent) => (prevComponent < 6 ? prevComponent + 1 : prevComponent));
+  };
 
+  useLayoutEffect(() =>
+  {
 
-    return (
-        <div>
+    const queryParams = new URLSearchParams(window.location.search);
+    const paramValue = queryParams.get('step');
+    console.log('Query parameter value:', paramValue);
+    if(paramValue){
+      setCurrentComponent(7)
+    }
+
+  }, [])
+
+  return (
+    <div>
 
 
       {currentComponent === 1 && <ForgiveIdentity onNext={handleNext} />}
@@ -26,9 +39,11 @@ const Stepper = () => {
       {currentComponent === 4 && <RegisterForm state={state} setState={setState} onNext={handleNext} setResponse={setResponse} />}
       {currentComponent === 5 && <FormOtp response={response} onNext={handleNext} />}
       {currentComponent === 6 && <SuccessMessage onNext={handleNext} />}
+      {currentComponent === 7 && <ErrorMessage onNext={handleNext} />}
 
-        </div>
-    );
+
+    </div>
+  );
 };
 
 export default Stepper;
