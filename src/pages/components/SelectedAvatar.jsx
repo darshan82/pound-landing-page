@@ -9,7 +9,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
 {
 
     const [tag, setTag] = useState()
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
     // Function to handle form submission
     const handleContinue = (e) =>
@@ -49,7 +49,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
         setTag(e.target.value)
     }
 
-
+    console.log("state?.avatar", state?.avatar)
 
     return (
         <Container className='form_container' style={{ position: "relative", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)" }}>
@@ -65,7 +65,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                         <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent" }} />
                     </div>
                     {!error ?
-                        <p style={{ fontSize: "12px", color: "rgba(255,255,255,.3)", paddingInline: '10px', marginTop: 5 }}>Must be xx characters and xxx</p>
+                        <p style={{ fontSize: "10px", color: "rgba(255,255,255,.3)", paddingInline: '10px', marginTop: 5 }}>Can contain between 5 & 15 alphanumeric characters</p>
                         :
                         <p style={{ fontSize: "13px", color: "red", paddingInline: '10px' }}>{error}</p>
                     }
@@ -73,14 +73,14 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
             </Row>
             {/* Part 2: Input Fields */}
             <Form>
-                <Row className="justify-content-center mt-2" style={{ width: "100%", height: "280px" }}>
+                <Row className="justify-content-center" style={{ height: "350px",marginBottom:20 }}>
                     {state?.avatar &&
-                        <Avatar onLoaded={() => setLoading(false)} scale={1.1} fov={40} shadows={true} cameraInitialDistance={3} modelSrc={state?.avatar} />
+                        <img style={{ width: 350, height: 350, }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
                     }
                 </Row>
 
                 {/* Part 4: Continue Button */}
-                <Row className="justify-content-center mt-3">
+                <Row className="justify-content-center ">
                     <Col md={12}>
                         <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
                             {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Continue"}

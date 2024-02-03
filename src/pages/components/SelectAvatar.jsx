@@ -28,12 +28,10 @@ function SelectAvatar({ onNext, state, setState })
         const avatar3DUrl = event.data.url; // This is the 3D avatar URL
         const avatarId = avatar3DUrl.split('/').pop().split('.')[0]; // Extract the avatar ID from the URL
         const avatar2DUrl = `https://models.readyplayer.me/${avatarId}.png`;
-        console.log("darshan", event.data.url)
-        console.log("darshan avatar2DUrl", avatar2DUrl)
 
         setState((prevState) =>
         {
-            return { ...prevState, avatar: event.data.url, avatar2DUrl }
+            return { ...prevState, avatar: avatar2DUrl, avatar2DUrl }
         })
         onNext()
 
