@@ -2,31 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
 import { Avatar } from '@readyplayerme/visage';
+import axios from 'axios';
+
 // import girl_avatar from "/src/assets/girl_avatar.png"
-const SelectedAvatar = ({ onNext, state, setState }) => {
+const SelectedAvatar = ({ onNext, state, setState }) =>
+{
 
     const [tag, setTag] = useState()
-    const [loading , setLoading] = useState(true)
-    const [error , setError] = useState()
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState()
     // Function to handle form submission
-    const handleContinue = (e) => {
+    const handleContinue = (e) =>
+    {
         e.preventDefault();
-        if (!tag) {
-            setError('Please add your first name.');
+        if (!tag)
+        {
+            setError('Tag is required');
             return;
         }
-        setState((prev) => {
-            return { ...prev, tag }
+        setLoading(true)
+
+        axios.post(`http://localhost:3005/api/users/website?username=${tag}`).then((res) =>
+        {
+            setLoading(false)
+
+            setState((prev) =>
+            {
+                return { ...prev, tag }
+            })
+            onNext()
+        }).catch((err) =>
+        {
+            setLoading(false)
+            setError(err?.response?.data?.message || "Some thing went wrong")
         })
-        onNext()
 
     };
 
-    useEffect(()=>{
+    useEffect(() =>
+    {
         console.log(loading)
-    },[loading])
+    }, [loading])
 
-    const handleChange = (e) => {
+    const handleChange = (e) =>
+    {
         setTag(e.target.value)
     }
 
@@ -45,24 +64,19 @@ const SelectedAvatar = ({ onNext, state, setState }) => {
                         <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Player Tag</p>
                         <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent" }} />
                     </div>
-                    {!error ? 
-                    <p style={{ fontSize: "12px", color: "rgba(255,255,255,.3)", paddingInline: '10px',marginTop:5 }}>Must be xx characters and xxx</p>
-                   
-                    : 
-                    <p style={{ fontSize: "13px", color: "red", paddingInline: '10px' }}>Tag is required</p>
-                   }
+                    {!error ?
+                        <p style={{ fontSize: "12px", color: "rgba(255,255,255,.3)", paddingInline: '10px', marginTop: 5 }}>Must be xx characters and xxx</p>
+                        :
+                        <p style={{ fontSize: "13px", color: "red", paddingInline: '10px' }}>{error}</p>
+                    }
                 </Col>
             </Row>
             {/* Part 2: Input Fields */}
             <Form>
                 <Row className="justify-content-center mt-2" style={{ width: "100%", height: "280px" }}>
-                     {state?.avatar && 
-                         <Avatar    onLoaded={()=>setLoading(false)}  scale={1.1}   fov={40} shadows={true}   cameraInitialDistance={3}  modelSrc={state?.avatar} />
-                     }
-                        
-
-                        
-                      
+                    {state?.avatar &&
+                        <Avatar onLoaded={() => setLoading(false)} scale={1.1} fov={40} shadows={true} cameraInitialDistance={3} modelSrc={state?.avatar} />
+                    }
                 </Row>
 
                 {/* Part 4: Continue Button */}
