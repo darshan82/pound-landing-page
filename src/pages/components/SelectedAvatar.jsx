@@ -51,7 +51,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
     console.log("state?.avatar", state?.avatar)
 
     return (
-        <Container className='form_container' style={{ position: "relative", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)" }}>
+        <Container className='form_container' style={{ position: "relative", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)", height: "540px" }}>
             <Row className="px-4">
                 <Col>
                     <p className='form_title' style={{ fontSize: "22px" }} >It’s your avatar.<br />Own it.</p>

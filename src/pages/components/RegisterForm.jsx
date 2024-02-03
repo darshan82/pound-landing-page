@@ -4,7 +4,8 @@ import "../../App.css";
 import ToastNotification from './Alert';
 import axios from 'axios';
 
-const RegisterForm = ({ onNext, state, setState , setResponse }) => {
+const RegisterForm = ({ onNext, state, setState, setResponse }) =>
+{
 
 
   // const [showMessage, setShowMessage] = useState(false)
@@ -19,7 +20,8 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
   const [toastType, setToastType] = useState('success');
   const [toastMessage, setToastMessage] = useState('');
 
-  const showToastNotification = (type, message) => {
+  const showToastNotification = (type, message) =>
+  {
     setToastType(type);
     setToastMessage(message);
     setShowToast(true);
@@ -35,10 +37,12 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
   // };
 
   // Function to handle form submission
-  const handleContinue = (e) => {
+  const handleContinue = (e) =>
+  {
     e.preventDefault();
     // Check if already loading, prevent multiple submissions
-    if (loading) {
+    if (loading)
+    {
       return;
     }
 
@@ -46,54 +50,62 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
     setLoading(true);
 
     // Check if required fields are filled
-    if (!state.first_name) {
+    if (!state.first_name)
+    {
       setError('Please add your first name.');
       setLoading(false);
       return;
     }
 
-    if (!state.last_name) {
+    if (!state.last_name)
+    {
       setError('Please add your last name.');
       setLoading(false);
       return;
     }
 
-    if (!state.email) {
+    if (!state.email)
+    {
       setError('Please add your email address.');
       setLoading(false);
       return;
     }
 
-    if (!state?.gamesToplay?.length) {
+    if (!state?.gamesToplay?.length)
+    {
       setError('Please select at least one category.');
       setLoading(false);
       return;
     }
 
     // All required fields are filled, proceed to add the document
-   
-      const data = state 
-      data.email_verified = false
-      console.log(data)
-      axios.post(`https://18.217.10.162/api/users/website` , data).then((res)=>{
-        setResponse(res?.data?.newUser)
-      
-        // showToastNotification("success", "User Registered Successfully")
-        onNext()
-        setState("")
-        setError("");
-      }).catch((err)=>{
 
-        showToastNotification("error", err?.response?.data?.message ? err?.response?.data?.message :"Some thing went Wrong" );
-      
-      })
-     
-      setLoading(false);
-   
-    }
+    const data = state
+    data.email_verified = false
+    console.log(data)
+    axios.post(`https://18.217.10.162/api/users/website`, data).then((res) =>
+    {
+      setResponse(res?.data?.newUser)
 
-  const handleCheckboxChange = (game) => {
-    setState((prev) => {
+      // showToastNotification("success", "User Registered Successfully")
+      onNext()
+      setState("")
+      setError("");
+    }).catch((err) =>
+    {
+
+      showToastNotification("error", err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
+
+    })
+
+    setLoading(false);
+
+  }
+
+  const handleCheckboxChange = (game) =>
+  {
+    setState((prev) =>
+    {
       return {
         ...prev,
         gamesToplay: prev?.gamesToplay
@@ -104,16 +116,18 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
       };
     });
   };
-  
 
-  const handleChange = (e) => {
-    setState((prev) => {
+
+  const handleChange = (e) =>
+  {
+    setState((prev) =>
+    {
       return { ...prev, [e.target.name]: e.target.value }
     })
   }
 
   return (
-    <Container className='form_container' style={{ position: "relative",height:550 }}>
+    <Container className='form_container' style={{ position: "relative", height: "540px" }}>
       {/* Part 1: Text Titles */}
       <ToastNotification
         show={showToast}
@@ -144,7 +158,7 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
         </Row>
         <Row className="justify-content-center ">
           <Col md={12}>
-            <Form.Group  controlId="email">
+            <Form.Group controlId="email">
               <Form.Control name="email" className='input' type="email" placeholder="Email" value={state?.email} onChange={handleChange} />
             </Form.Group>
           </Col>

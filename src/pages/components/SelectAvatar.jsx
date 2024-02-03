@@ -48,7 +48,7 @@ function SelectAvatar({ onNext, state, setState })
 
     };
     return (
-        <Container className='form_container' style={{ display: "flex", flexDirection: "column", height: "530px", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)", padding: 0 }}>
+        <Container className='form_container' style={{ display: "flex", flexDirection: "column", height: "540px", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)", padding: 0 }}>
             {/* <div style={{height:"430px"}}> */}
 
             <AvatarCreator
