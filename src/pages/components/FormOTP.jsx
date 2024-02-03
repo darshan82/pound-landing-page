@@ -69,7 +69,7 @@ const FormOtp = ({ onNext, response }) =>
 
   return (
     <Container className='form_container ' style={{ display: "flex", justifyContent: "space-between", flexDirection: "column" ,height: "540px"}}>
-      <Row style={{ alignItems: "center", justifyItems: "center", width: "100%", height: "100%" }}>
+      <Row style={{ alignItems: "center", justifyItems: "center",  height: "100%" }}>
 
 
 
