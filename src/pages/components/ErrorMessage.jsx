@@ -6,7 +6,7 @@ const SuccessMessage = ({ onNext }) =>
 {
 
     return (
-        <Container className='form_container' style={{ display: "flex", gap: "10px", justifyContent: "center", alignItems: "center", flexDirection: "column", minHeight: "480px" }} >
+        <Container className='form_container' style={{ display: "flex", gap: "10px", justifyContent: "center", alignItems: "center", flexDirection: "column", minHeight: "540px" }} >
 
             {/* <div className='form_container' style={{ height:"100%", display:"flex", position: "absolute", paddingInline:"25px",  flexDirection:"column", justifyContent: "center",}}> */}
             <p className='form_title' style={{ paddingInline: '25px' }}>

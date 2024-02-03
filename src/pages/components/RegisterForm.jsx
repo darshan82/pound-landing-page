@@ -113,7 +113,7 @@ const RegisterForm = ({ onNext, state, setState , setResponse }) => {
   }
 
   return (
-    <Container className='form_container' style={{ position: "relative" }}>
+    <Container className='form_container' style={{ position: "relative",height:550 }}>
       {/* Part 1: Text Titles */}
       <ToastNotification
         show={showToast}
