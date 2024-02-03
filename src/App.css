@@ -19,7 +19,7 @@ p{
 
 
 .input {
-  background-color: transparent;
+  background-color: #323335;
   border: 0;
   min-height: 40px;
   color: rgb(255, 255, 255 , 1);
@@ -30,7 +30,7 @@ p{
 
 /* Style for the input field when it is in focus */
 .input:focus , .input:active {
-  background-color: transparent;
+  background-color: #323335;
   /* Change background color when in focus */
   outline: none;
   box-shadow: none;
