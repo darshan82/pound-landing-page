@@ -73,7 +73,7 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
 
     if (!state?.gamesToplay?.length)
     {
-      setError('Please select at least one category.');
+      setError('Please select at least one game.');
       setLoading(false);
       return;
     }
