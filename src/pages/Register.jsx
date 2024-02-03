@@ -16,7 +16,7 @@ const Register = () => {
         <Row >
           <Col>
             <p className="title">Reach The Avatar State</p>
-            <p className="sub_title" style={{ textAlign: "center" }} >Enhancing gamers' performance in-game and in real life by gamifying the fitness journey.</p>
+            <p className="sub_title" style={{ textAlign: "center",lineHeight:1.6 }} >Enhancing gamers' performance in game and in real life by gamifying the fitness journey.</p>
           </Col>
         </Row>
       </Container>
@@ -30,8 +30,6 @@ const Register = () => {
               src={Main}
               alt="Image"
               style={{width:"100%" , objectFit:"contain" }}
-              // className="img-fluid"
-
               />
           </Col>
           <Col md={12} lg={4} className='mt-3'>

@@ -2,32 +2,34 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
 import all_avatars from "/src/assets/Avatar_All.png"
-const ForgiveIdentity = ({onNext}) => {
+const ForgiveIdentity = ({ onNext }) =>
+{
 
-  const handleContinue = (e) => {
+  const handleContinue = (e) =>
+  {
     e.preventDefault();
 
-      onNext()
+    onNext()
 
   };
 
- 
+
 
   return (
-    <Container className='form_container' style={{position:"relative"}}>
+    <Container className='form_container' style={{ position: "relative" }}>
       {/* Part 1: Text Titles */}
-  
+
       <Row className="px-4">
         <Col>
-          <p className='form_title' style={{fontSize:"22px"}} >Forge your digital identity to join the team of testers!</p>
+          <p className='form_title' style={{ fontSize: "22px" }} >Forge your digital identity to join the team of testers!</p>
           <p className='form_subtitle' >Create your player tag and personalized avatar to join</p>
         </Col>
       </Row>
 
       {/* Part 2: Input Fields */}
       <Form>
-        <Row className="justify-content-center mt-2" style={{width:"100%" , height:"360px"}}>
-            <Image  style={{objectFit:"contain", height:"100%"}} src={all_avatars}/>
+        <Row className="justify-content-center mt-2" style={{ height: "360px" }}>
+          <Image style={{ objectFit: "contain", height: "100%" ,marginLeft:10}} src={all_avatars} />
         </Row>
 
         {/* Part 4: Continue Button */}
@@ -35,13 +37,13 @@ const ForgiveIdentity = ({onNext}) => {
           <Col md={12}>
             <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={false}>
               {false ? <Spinner animation="border" size="sm" className="mr-2" /> : "Forge my identity"}
-              
+
             </Button>
           </Col>
         </Row>
       </Form>
 
-      
+
     </Container>
   );
 };

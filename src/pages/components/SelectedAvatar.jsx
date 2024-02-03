@@ -46,7 +46,7 @@ const SelectedAvatar = ({ onNext, state, setState }) => {
                         <input onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent" }} />
                     </div>
                     {!error ? 
-                    <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)", paddingInline: '10px' }}>Must be xx characters and xxx</p>
+                    <p style={{ fontSize: "12px", color: "rgba(255,255,255,.3)", paddingInline: '10px',marginTop:5 }}>Must be xx characters and xxx</p>
                    
                     : 
                     <p style={{ fontSize: "13px", color: "red", paddingInline: '10px' }}>Tag is required</p>
@@ -56,7 +56,7 @@ const SelectedAvatar = ({ onNext, state, setState }) => {
             {/* Part 2: Input Fields */}
             <Form>
                 <Row className="justify-content-center mt-2" style={{ width: "100%", height: "280px" }}>
-                     {state.avatar && 
+                     {state?.avatar && 
                          <Avatar    onLoaded={()=>setLoading(false)}  scale={1.1}   fov={40} shadows={true}   cameraInitialDistance={3}  modelSrc={state?.avatar} />
                      }
                         
@@ -70,7 +70,6 @@ const SelectedAvatar = ({ onNext, state, setState }) => {
                     <Col md={12}>
                         <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
                             {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Continue"}
-
                         </Button>
                     </Col>
                 </Row>
