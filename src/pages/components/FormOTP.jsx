@@ -75,6 +75,7 @@ const FormOtp = ({onNext , response}) => {
                         onChange={(e) => handleInputChange(index, e.target.value)}
                         maxLength="1"
                         ref={(el) => (inputRefs.current[index] = el)}
+                        style={{ background: "transparent" }}
                         />
                         ))}
             </form>
