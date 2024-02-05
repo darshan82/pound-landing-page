@@ -70,6 +70,14 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
       setLoading(false);
       return;
     }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(state.email))
+    {
+      setError('Please enter a valid email address.');
+      setLoading(false);
+      return;
+    }
+
 
     if (!state?.gamesToplay?.length)
     {
