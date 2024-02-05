@@ -41,7 +41,18 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
 
     const handleChange = (e) =>
     {
-        setTag(e.target.value)
+        const inputValue = e.target.value;
+        const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+        const isValidLength = inputValue.length >= 5 && inputValue.length <= 15;
+
+        if (!alphanumericRegex.test(inputValue) || !isValidLength)
+        {
+            setError('Player tag must be between 5 and 15 alphanumeric characters.');
+        } else
+        {
+            setError(null);
+        }
+        setTag(inputValue);
     }
 
     console.log("state?.avatar", state?.avatar)
@@ -80,7 +91,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                     {!error ?
                         <p style={{ fontSize: "10px", color: "rgba(255,255,255,.3)", paddingInline: '10px', marginTop: 5 }}>Can contain between 5 & 15 alphanumeric characters</p>
                         :
-                        <p style={{ fontSize: "13px", color: "red", paddingInline: '10px' }}>{error}</p>
+                        <p style={{ fontSize: "9px", color: "red", paddingInline: '10px' }}>{error}</p>
                     }
                 </Col>
             </Row>
