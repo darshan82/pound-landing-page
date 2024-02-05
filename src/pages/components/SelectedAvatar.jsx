@@ -52,7 +52,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
         {
             setError(null);
         }
-        setTag(inputValue);
+        setTag(String(inputValue).toLowerCase());
     }
 
     console.log("state?.avatar", state?.avatar)
