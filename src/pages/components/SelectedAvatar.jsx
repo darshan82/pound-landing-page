@@ -85,7 +85,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                             <input
                                 autocomplete="off"
                                 onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", width: error && 260, paddingRight: error && 10 }} />
-                            {/* {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>} */}
+                            {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>}
                         </div>
                     </div>
                     {!error ?
