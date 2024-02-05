@@ -30,7 +30,7 @@ const SuccessMessage = ({ onNext }) =>
         <Container className='form_container' style={{ display: "flex", gap: "10px", justifyContent: "center", alignItems: "center", flexDirection: "column", height: "540px" }} >
 
             {/* <div className='form_container' style={{ height:"100%", display:"flex", position: "absolute", paddingInline:"25px",  flexDirection:"column", justifyContent: "center",}}> */}
-            <p className='form_title' style={{ paddingInline: '25px' }}>
+            <p className='form_title' style={{ paddingInline: '15px' }}>
                 You have been successfully unsubscribed from the POUND Gaming Communication list.
             </p>
 
