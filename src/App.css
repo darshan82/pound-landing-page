@@ -4,13 +4,6 @@ body {
   font-weight: 500;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: black;
-  font-family: Montserrat , sans-serif;
-  font-weight: 500;
-  }
-}
 
 p{
   padding: 0;
@@ -344,15 +337,15 @@ p{
 }
 
 .otp_input{
-    width: 1.8rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     text-align: center;
     font-size: 1.2rem;
     margin: 0 0.2rem;
     color:white;
     background-color: rgba(255, 255, 255, 0.06);
     outline: none;
-    border-radius: 10px;
+    border-radius: 13px;
     border: none;
   
 }
