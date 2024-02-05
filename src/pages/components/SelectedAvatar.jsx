@@ -8,7 +8,7 @@ import { RxCross1 } from "react-icons/rx";
 const SelectedAvatar = ({ onNext, state, setState }) =>
 {
 
-    const [tag, setTag] = useState()
+    const [tag, setTag] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
     // Function to handle form submission
@@ -84,6 +84,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                         <div style={{ display: "flex" }}>
                             <input
                                 autocomplete="off"
+                                value={tag}
                                 onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", width: error && 260, paddingRight: error && 10 }} />
                             {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>}
                         </div>
