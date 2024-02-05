@@ -47,7 +47,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
 
         if (!alphanumericRegex.test(inputValue) || !isValidLength)
         {
-            setError('Player tag must be between 5 and 15 alphanumeric characters.');
+            setError('Must contain between 5 & 15 alphanumeric characters');
         } else
         {
             setError(null);
@@ -85,13 +85,13 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                             <input
                                 autocomplete="off"
                                 onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", width: error && 260, paddingRight: error && 10 }} />
-                            {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>}
+                            {/* {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>} */}
                         </div>
                     </div>
                     {!error ?
-                        <p style={{ fontSize: "10px", color: "rgba(255,255,255,.3)", paddingInline: '10px', marginTop: 5 }}>Can contain between 5 & 15 alphanumeric characters</p>
+                        <p style={{ fontSize: "10px", color: "rgba(255,255,255,.3)", paddingInline: '10px', marginTop: 5 }}>Must contain between 5 & 15 alphanumeric characters</p>
                         :
-                        <p style={{ fontSize: "9px", color: "red", paddingInline: '10px' }}>{error}</p>
+                        <p style={{ fontSize: "10px", color: "red", paddingInline: '10px', marginTop: 5 }}>{error}</p>
                     }
                 </Col>
             </Row>
