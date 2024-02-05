@@ -39,11 +39,6 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
 
     };
 
-    useEffect(() =>
-    {
-        console.log(loading)
-    }, [loading])
-
     const handleChange = (e) =>
     {
         setTag(e.target.value)
@@ -57,7 +52,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
         setTimeout(() =>
         {
             setIsLoading(false); // Hide loader after 10 seconds
-        }, 10000);
+        }, 8000);
     };
     useEffect(() =>
     {
@@ -92,8 +87,8 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
             {/* Part 2: Input Fields */}
             <Form>
                 <Row className="justify-content-center" style={{ height: "280px", marginBottom: 20 }}>
-                    {isLoading && <div style={{ display: "flex", flexDirection:"column",justifyContent: "center", alignContent: "center", alignItems: "center" }}><img src={Loader} style={{ width: 70, height: 70 }} />
-                        <p style={{ fontSize: "23px", color: "rgba(255,255,255,.6)",marginTop:10 }} >Loading Avatar</p>
+                    {isLoading && <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center" }}><img src={Loader} style={{ width: 70, height: 70 }} />
+                        <p style={{ fontSize: "23px", color: "rgba(255,255,255,.6)", marginTop: 10 }} >Loading Avatar</p>
 
                     </div>}
                     {state?.avatar &&
@@ -107,7 +102,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                 {/* Part 4: Continue Button */}
                 <Row className="justify-content-center ">
                     <Col md={12}>
-                        <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
+                        <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading || isLoading}>
                             {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Continue"}
                         </Button>
                     </Col>
