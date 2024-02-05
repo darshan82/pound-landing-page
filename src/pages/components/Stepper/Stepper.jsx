@@ -9,7 +9,7 @@ import ErrorMessage from '../ErrorMessage';
 
 const Stepper = () =>
 {
-  const [currentComponent, setCurrentComponent] = useState(1);
+  const [currentComponent, setCurrentComponent] = useState(7);
   const [state, setState] = useState()
   const [response, setResponse] = useState()
   const handleNext = () =>
