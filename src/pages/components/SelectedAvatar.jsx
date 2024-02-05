@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
 import axios from 'axios';
+import Loader from "../../assets/loading.gif"
 import { RxCross1 } from "react-icons/rx";
 // import girl_avatar from "/src/assets/girl_avatar.png"
 const SelectedAvatar = ({ onNext, state, setState }) =>
@@ -91,9 +92,15 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
             {/* Part 2: Input Fields */}
             <Form>
                 <Row className="justify-content-center" style={{ height: "280px", marginBottom: 20 }}>
-                    {isLoading && <div style={{ display: "flex", justifyContent: "center", alignContent: "center", alignItems: "center" }}><Spinner animation="border" size="md" className="mr-2" style={{ width: 70, height: 70 }} /></div>}
+                    {isLoading && <div style={{ display: "flex", flexDirection:"column",justifyContent: "center", alignContent: "center", alignItems: "center" }}><img src={Loader} style={{ width: 70, height: 70 }} />
+                        <p style={{ fontSize: "23px", color: "rgba(255,255,255,.6)",marginTop:10 }} >Loading Avatar</p>
+
+                    </div>}
                     {state?.avatar &&
-                        <img style={{ width: 280, height: 280, display: isLoading ? 'none' : 'block' }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
+                        <>
+                            <img style={{ width: 280, height: 280, display: isLoading ? 'none' : 'block' }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
+
+                        </>
                     }
                 </Row>
 
