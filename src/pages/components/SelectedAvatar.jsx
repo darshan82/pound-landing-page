@@ -49,7 +49,19 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
     }
 
     console.log("state?.avatar", state?.avatar)
-
+    const [isLoading, setIsLoading] = useState(true);
+    const handleImageLoad = () =>
+    {
+        // Image is fully loaded and painted
+        setTimeout(() =>
+        {
+            setIsLoading(false); // Hide loader after 10 seconds
+        }, 10000);
+    };
+    useEffect(() =>
+    {
+        handleImageLoad()
+    }, [])
     return (
         <Container className='form_container' style={{ position: "relative", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)", height: "540px" }}>
             <Row className="px-4">
@@ -79,8 +91,9 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
             {/* Part 2: Input Fields */}
             <Form>
                 <Row className="justify-content-center" style={{ height: "280px", marginBottom: 20 }}>
+                    {isLoading && <div style={{ display: "flex", justifyContent: "center", alignContent: "center", alignItems: "center" }}><Spinner animation="border" size="md" className="mr-2" style={{ width: 70, height: 70 }} /></div>}
                     {state?.avatar &&
-                        <img style={{ width: 280, height: 280, }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
+                        <img style={{ width: 280, height: 280, display: isLoading ? 'none' : 'block' }} src={state?.avatar + "?pose=thumbs-up&expression=happy&camera=fullbody"} />
                     }
                 </Row>
 
