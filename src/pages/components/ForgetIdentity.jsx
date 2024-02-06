@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
 import all_avatars from "/src/assets/Avatar_All.png"
+import ReactGA from 'react-ga';
+
 const ForgiveIdentity = ({ onNext }) =>
 {
 
@@ -13,6 +15,14 @@ const ForgiveIdentity = ({ onNext }) =>
 
   };
 
+  useEffect(() =>
+  {
+    ReactGA.event({
+      category: 'Forge my indentify screen',
+      action: 'Forge my indentify',
+      label: 'Forge my indentify buttom',
+    });
+  }, [])
 
 
   return (

@@ -9,6 +9,7 @@ import "../../App.css";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from '../../../firebase';
 import ToastNotification from './Alert';
+import ReactGA from 'react-ga';
 
 const Footer = () =>
 {
@@ -32,6 +33,12 @@ const Footer = () =>
         e.preventDefault()
         // Reset previous error messages
         setEmailError('');
+
+        ReactGA.event({
+            category: 'Footer Email Entered screen',
+            action: 'Footer Email Entered',
+            label: 'Footer Email Entered buttom',
+        });
 
         // Validate email pattern
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -104,9 +111,9 @@ const Footer = () =>
                             </a>
                         </div>
 
-                        <div style={{ marginTop: "10px",paddingTop:20 }}>
-                            
-                            <a className='footer_subtitle' target='_blank'  href="mailto:team@poundgaming.com" style={{textDecoration:"none",}} >Contact us</a>
+                        <div style={{ marginTop: "10px", paddingTop: 20 }}>
+
+                            <a className='footer_subtitle' target='_blank' href="mailto:team@poundgaming.com" style={{ textDecoration: "none", }} >Contact us</a>
                         </div>
                     </div>
 

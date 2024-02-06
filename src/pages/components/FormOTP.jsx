@@ -1,10 +1,20 @@
 import axios from 'axios';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Container, Button, Col, Spinner, Row } from 'react-bootstrap';
-import { Next } from 'react-bootstrap/esm/PageItem';
+import ReactGA from 'react-ga';
 
 const FormOtp = ({ onNext, response }) =>
 {
+
+  useEffect(() =>
+  {
+    ReactGA.event({
+      category: 'Form OTP screen',
+      action: 'Form OTP',
+      label: 'Form OTP buttom',
+    });
+  }, [])
+
   const [otp, setOtp] = useState(Array(6).fill(''));
   const inputRefs = useRef(new Array(6).fill(null).map(() => React.createRef()));
   const [loading, setLoading] = useState(false);
@@ -68,8 +78,8 @@ const FormOtp = ({ onNext, response }) =>
   };
 
   return (
-    <Container className='form_container ' style={{ display: "flex", justifyContent: "space-between", flexDirection: "column" ,height: "540px"}}>
-      <Row style={{ alignItems: "center", justifyItems: "center",  height: "100%" }}>
+    <Container className='form_container ' style={{ display: "flex", justifyContent: "space-between", flexDirection: "column", height: "540px" }}>
+      <Row style={{ alignItems: "center", justifyItems: "center", height: "100%" }}>
         <div>
           <p className='form_title' style={{ fontSize: "24px" }}>An authorization code has been sent to your email.</p>
           <p className='form_subtitle' style={{ marginBlock: "20px" }} >Enter the code below to authenticate your email.</p>

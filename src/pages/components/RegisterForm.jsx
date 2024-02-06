@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import "../../App.css";
 import ToastNotification from './Alert';
 import axios from 'axios';
+import ReactGA from 'react-ga';
 
 const RegisterForm = ({ onNext, state, setState, setResponse }) =>
 {
+
+  useEffect(() =>
+  {
+    ReactGA.event({
+      category: 'User Info Form screen',
+      action: 'User Info Form',
+      label: 'User Info Form button',
+    });
+  }, [])
 
 
   // const [showMessage, setShowMessage] = useState(false)
@@ -27,14 +37,6 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
     setShowToast(true);
   };
 
-  // const showAlert = () => {
-  //   setShowMessage(true);
-
-  //   // After 5 seconds, hide the div
-  //   setTimeout(() => {
-  //     setShowMessage(false);
-  //   }, 5000);
-  // };
 
   // Function to handle form submission
   const handleContinue = (e) =>

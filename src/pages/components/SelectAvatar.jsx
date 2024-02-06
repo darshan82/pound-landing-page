@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Button, Container, Spinner } from 'react-bootstrap';
 import "../../App.css";
+import ReactGA from 'react-ga';
+
 import
 {
     AvatarCreator,
@@ -17,6 +19,16 @@ const style = { padding: 0, width: "100%", height: "100%", border: "none", margi
 
 function SelectAvatar({ onNext, state, setState })
 {
+
+    useEffect(() =>
+    {
+      ReactGA.event({
+        category: 'Select Avatar screen',
+        action: 'Select Avatar',
+        label: 'Select Avatar button',
+      });
+    }, [])
+
     const handleOnUserSet = (event) =>
     {
         console.log(`User ID is: ${event.data.id}`);

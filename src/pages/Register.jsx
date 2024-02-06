@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import RegisterForm from './components/RegisterForm.jsx';
 import NavBar from './components/Navbar.jsx';
 import Main from "../assets/Home.svg"
 import Footer from './components/Footer.jsx';
+import { useLocation } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import Stepper from './components/Stepper/Stepper.jsx';
-const Register = () => {
+const Register = () =>
+{
+  const location = useLocation();
+  useEffect(() =>
+  {
+    ReactGA.pageview(location.pathname + location.search);
+  }, [location]);
+
   return (
     <div className='main_div' >
       <NavBar />
@@ -16,7 +25,7 @@ const Register = () => {
         <Row >
           <Col>
             <p className="title">Reach The Avatar State</p>
-            <p className="sub_title" style={{ textAlign: "center",lineHeight:1.6 }} >Enhancing gamers' performance in game and in real life by gamifying the fitness journey.</p>
+            <p className="sub_title" style={{ textAlign: "center", lineHeight: 1.6 }} >Enhancing gamers' performance in game and in real life by gamifying the fitness journey.</p>
           </Col>
         </Row>
       </Container>
@@ -29,11 +38,11 @@ const Register = () => {
             <img
               src={Main}
               alt="Image"
-              style={{width:"100%" , objectFit:"contain" }}
-              />
+              style={{ width: "100%", objectFit: "contain" }}
+            />
           </Col>
           <Col md={12} lg={4} className='mt-3'>
-            <Stepper/>
+            <Stepper />
           </Col>
         </Row>
       </Container>

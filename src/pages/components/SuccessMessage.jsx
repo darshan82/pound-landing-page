@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import "../../App.css";
+import ReactGA from 'react-ga';
 
 const SuccessMessage = ({ onNext }) =>
 {
+
+  useEffect(() =>
+  {
+    ReactGA.event({
+      category: 'Success Screen',
+      action: 'Success Screen',
+      label: 'Success Screen button',
+    });
+  }, [])
 
   return (
     <Container className='form_container' style={{ display: "flex", gap: "10px", justifyContent: "center", alignItems: "center", flexDirection: "column", height: "540px" }} >

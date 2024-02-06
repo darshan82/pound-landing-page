@@ -3,10 +3,20 @@ import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstr
 import "../../App.css";
 import axios from 'axios';
 import Loader from "../../assets/loading.gif"
-import { RxCross1 } from "react-icons/rx";
+import ReactGA from 'react-ga';
+
 // import girl_avatar from "/src/assets/girl_avatar.png"
 const SelectedAvatar = ({ onNext, state, setState }) =>
 {
+
+    useEffect(() =>
+    {
+        ReactGA.event({
+            category: 'Selected Avatar screen',
+            action: 'Selected Avatar',
+            label: 'Selected Avatar button',
+        });
+    }, [])
 
     const [tag, setTag] = useState("")
     const [loading, setLoading] = useState(false)
