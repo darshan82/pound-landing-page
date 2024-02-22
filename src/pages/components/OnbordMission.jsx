@@ -75,7 +75,7 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
                         <input
                             autocomplete="off"
                             onChange={(e)=>setState({...state , email:e.target.value})}
-                            className='input' placeholder='Enter your Email' style={{ background: "transparent", width: error && 260, paddingRight: error && 10 }} />
+                            className='input'  placeholder='Enter your Email' style={{ background: "transparent" , minHeight:"20px" , flex:1 }} />
                         {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>}
                     </div>
                 </div>
