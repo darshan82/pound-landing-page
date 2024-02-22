@@ -19,15 +19,16 @@ const SuccessMessage = ({ onNext }) =>
     <Container className='form_container' style={{ display: "flex", gap: "10px", justifyContent: "center", alignItems: "center", flexDirection: "column", height: "540px" }} >
 
       {/* <div className='form_container' style={{ height:"100%", display:"flex", position: "absolute", paddingInline:"25px",  flexDirection:"column", justifyContent: "center",}}> */}
-      <p className='form_title' style={{ paddingInline: '25px' }}>
-        Thank your for applying
-        to join the POUND
-        Team of Beta Testers.
+      <p className='form_title' style={{ paddingInline: '25px' , marginBottom:"25px" }}>
+      Congratulations  🎉
       </p>
       <p className='form_subtitle'  >
-        We will contact you via email with a response as we
-        gear up for the launch of POUND Beta.
-      </p>
+      <span>You are officially a member of the team!</span>
+      <br/>
+      <br/>
+      <span>
+      We will contact you via email with more information as we gear up for the launch of POUND Beta.     </span>  </p>
+      
       {/* </div> */}
     </Container>
   );

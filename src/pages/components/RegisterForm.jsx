@@ -66,19 +66,8 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
       return;
     }
 
-    if (!state.email)
-    {
-      setError('Please add your email address.');
-      setLoading(false);
-      return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(state.email))
-    {
-      setError('Please enter a valid email address.');
-      setLoading(false);
-      return;
-    }
+   
+    
 
 
     if (!state?.gamesToplay?.length)
@@ -168,9 +157,9 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
         </Row>
         <Row className="justify-content-center ">
           <Col md={12}>
-            <Form.Group controlId="email">
+            {/* <Form.Group controlId="email">
               <Form.Control autocomplete="off" name="email" className='input' type="email" placeholder="Email" value={state?.email} onChange={handleChange} />
-            </Form.Group>
+            </Form.Group> */}
           </Col>
         </Row>
 
@@ -219,7 +208,7 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
         </Row>
 
         {/* Part 4: Continue Button */}
-        <Row className="justify-content-center mt-3">
+        <Row className="justify-content-center mt-4 " >
           <Col md={12}>
             <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
               {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
