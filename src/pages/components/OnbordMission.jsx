@@ -22,8 +22,8 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
       return;
     }
 
-    let data = state
-    axios.post(`https://18.217.10.162/api/users/website`, data).then((res) =>
+    // let data = state
+    axios.post(`https://18.217.10.162/api/users/website?email=${state.email}` ).then((res) =>
     {
     //   setResponse(res?.data?.newUser)
 
