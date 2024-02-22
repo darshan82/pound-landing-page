@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
+import axios from 'axios';
 // import ReactGA from 'react-ga';
 
 const OnboardMission = ({ onNext  ,state , setState }) => {
@@ -21,7 +22,22 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
       return;
     }
 
-        onNext()
+    let data = state
+    axios.post(`https://18.217.10.162/api/users/website`, data).then((res) =>
+    {
+    //   setResponse(res?.data?.newUser)
+
+      // showToastNotification("success", "User Registered Successfully")
+      onNext()
+      setError("");
+    }).catch((err) =>
+    {
+
+      setError( err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
+
+    })
+
+        // onNext()
 
     };
 
