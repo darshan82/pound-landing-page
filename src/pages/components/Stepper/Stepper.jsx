@@ -15,7 +15,7 @@ const Stepper = () =>
   const [response, setResponse] = useState()
   const handleNext = () =>
   {
-    setCurrentComponent((prevComponent) => (prevComponent < 6 ? prevComponent + 1 : prevComponent));
+    setCurrentComponent((prevComponent) => (prevComponent < 7 ? prevComponent + 1 : prevComponent));
   };
 
   useLayoutEffect(() =>
@@ -25,7 +25,7 @@ const Stepper = () =>
     const paramValue = queryParams.get('step');
     console.log('Query parameter value:', paramValue);
     if(paramValue){
-      setCurrentComponent(7)
+      setCurrentComponent(8)
     }
 
   }, [])
