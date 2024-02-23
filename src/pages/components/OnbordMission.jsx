@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 // import ReactGA from 'react-ga';
 
 const OnboardMission = ({ onNext  ,state , setState }) => {
@@ -21,47 +22,31 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
       setError('Please enter a valid email address.');
       return;
     }
+    
+        const subDomain = "poundgaming"
+        const apiKey ="aaff10p5I_2HLos2BzuTnoNsp7F"
+        const header= {
+            ["x-api-key"]:apiKey
+        }  
 
-    // let data = state
-    axios.post(`https://18.217.10.162/api/users/website?email=${state.email}` ).then((res) =>
-    {
-    //   setResponse(res?.data?.newUser)
-
-        if(res){
-            const subDomain = "poundgaming"
-            const apiKey ="aaff10p5I_2HLos2BzuTnoNsp7F"
-            const header= {
-                ["x-api-key"]:apiKey
-            }   
-
-            axios.get(`https://api-v1.zealy.io/communities/${subDomain}/users?email=${state?.email}`, {headers:header}).then((res)=>{
-
-
-            }).catch((err)=>console.log(err,"..............."))
-        }
+        axios.get(`https://api-v1.zealy.io/communities/${subDomain}/users?email=${state?.email}`, {headers:header}).then((res)=>{
+           
+        axios.post(`https://18.217.10.162/api/users/website?email=${state.email}` ).then((res) =>
+            {
+    
+              onNext()
+              setError("");
+            }).catch((err) =>
+            {
         
-      // showToastNotification("success", "User Registered Successfully")
-      onNext()
-      setError("");
-    }).catch((err) =>
-    {
+              setError( err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
+        
+            })
 
-      setError( err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
+        }).catch((err)=>setError("Please Onboard first"))
+    }
 
-    })
-
-        // onNext()
-
-    };
-
-    // useEffect(() => {
-    //     ReactGA.event({
-    //         category: 'Forge my indentify screen',
-    //         action: 'Forge my indentify',
-    //         label: 'Forge my indentify buttom',
-    //     });
-    // }, [])
-
+    
 
     return (
         <Container className='form_container' style={{ position: "relative", height: "540px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
@@ -75,9 +60,11 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
             </Row>
 
             {/* Part 2: Input Fields */}
+            <a href='https://zealy.io/cw/poundgaming' target='_blank'>
             <Button className="btn-onboard" >
                 Go to Onboarding Missions
             </Button>
+            </a>
             <div>
                 <p className='form_subtitle'>Already completed Onboarding Missions?</p>
                 {/* <br/> */}
