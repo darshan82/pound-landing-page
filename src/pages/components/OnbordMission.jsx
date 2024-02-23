@@ -27,6 +27,19 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
     {
     //   setResponse(res?.data?.newUser)
 
+        if(res){
+            const subDomain = "poundgaming"
+            const apiKey ="aaff10p5I_2HLos2BzuTnoNsp7F"
+            const header= {
+                ["x-api-key"]:apiKey
+            }   
+
+            axios.get(`https://api-v1.zealy.io/communities/${subDomain}/users?email=${state?.email}`, {headers:header}).then((res)=>{
+
+
+            }).catch((err)=>console.log(err,"..............."))
+        }
+        
       // showToastNotification("success", "User Registered Successfully")
       onNext()
       setError("");
