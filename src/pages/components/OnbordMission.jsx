@@ -53,7 +53,7 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
     return (
         <Container className='form_container' style={{ position: "relative", height: "540px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
             {/* Part 1: Text Titles */}
-
+            
             <Row className="px-4">
                 <Col>
                     <p className='form_title' style={{ fontSize: "22px" }} >Forge your digital identity to join the team of testers!</p>
@@ -62,7 +62,7 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
             </Row>
 
             {/* Part 2: Input Fields */}
-            <Button style={{ width: "100%", background: "#252628", borderRadius: "10px", border: "1px solid rgba(255,255,255,.06)", paddingBlock: '10px', fontWeight: "600", fontSize: "16px" }}>
+            <Button className="btn-onboard" >
                 Go to Onboarding Missions
             </Button>
             <div>
@@ -75,8 +75,8 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
                         <input
                             autocomplete="off"
                             onChange={(e)=>setState({...state , email:e.target.value})}
-                            className='input'  placeholder='Enter your Email' style={{ background: "transparent" , minHeight:"20px" , flex:1 }} />
-                        {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>}
+                            className='input'  placeholder='Enter your Email' style={{ background: "transparent" , height:"20px" , minHeight:10, flex:1 }} />
+                        {error && <div style={{ color: "red", fontSize: 14, fontWeight: "bold", marginTop: 3 }}>X</div>}
                     </div>
                 </div>
                 {error &&

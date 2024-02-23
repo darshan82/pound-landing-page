@@ -120,7 +120,7 @@ const Footer = () =>
                     <Form style={{ paddingBlock: 40 }}>
 
                         <p className='email_label'>Subscribe to stay informed.</p>
-                        <div className='footer_email_div' >
+                        <div className='footer_email_div'  >
                             <input
                                 type='text'
                                 placeholder='Email'

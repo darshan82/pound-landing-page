@@ -28,6 +28,7 @@ const ForgiveIdentity = ({ onNext }) =>
   return (
     <Container className='form_container' style={{ position: "relative", height: "540px" }}>
       {/* Part 1: Text Titles */}
+    <div style={{height:"90%"}}>
 
       <Row className="px-4">
         <Col>
@@ -41,6 +42,8 @@ const ForgiveIdentity = ({ onNext }) =>
         <Row className="justify-content-center mt-2" style={{ height: "360px" }}>
           <Image style={{ objectFit: "contain", height: "100%", marginLeft: 10 }} src={all_avatars} />
         </Row>
+      </Form>
+    </div>
 
         {/* Part 4: Continue Button */}
         <Row className="justify-content-center mt-3">
@@ -51,7 +54,6 @@ const ForgiveIdentity = ({ onNext }) =>
             </Button>
           </Col>
         </Row>
-      </Form>
 
 
     </Container>

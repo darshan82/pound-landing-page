@@ -81,6 +81,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
     }, [])
     return (
         <Container className='form_container' style={{ position: "relative", boxShadow: "0 0 2px 0 rgba(9, 13, 20, 0.24)", height: "540px" }}>
+        <div style={{height:"90%"}}>
             <Row className="px-4">
                 <Col>
                     <p className='form_title' style={{ fontSize: "22px" }} >It’s your avatar.<br />Own it.</p>
@@ -95,8 +96,8 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                             <input
                                 autocomplete="off"
                                 value={tag}
-                                onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", width: error && 260, paddingRight: error && 10 }} />
-                            {error && <div style={{ color: "red", fontSize: 20, fontWeight: "bold", marginTop: 3 }}>X</div>}
+                                onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", minHeight:10, height:"20px",  width: error && 260, paddingRight: error && 10 }} />
+                            {error && <div style={{ color: "red", fontSize: 14, fontWeight: "bold", marginTop: 3 }}>X</div>}
                         </div>
                     </div>
                     {!error ?
@@ -120,16 +121,16 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                         </>
                     }
                 </Row>
-
+            </Form>
+                    </div>
                 {/* Part 4: Continue Button */}
-                <Row className="justify-content-center ">
+                <Row className="justify-content-center mt-3 ">
                     <Col md={12}>
                         <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading || isLoading}>
                             {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Continue"}
                         </Button>
                     </Col>
                 </Row>
-            </Form>
         </Container>
     );
 };

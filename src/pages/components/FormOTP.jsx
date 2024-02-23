@@ -79,6 +79,7 @@ const FormOtp = ({ onNext, response }) =>
 
   return (
     <Container className='form_container ' style={{ display: "flex", justifyContent: "space-between", flexDirection: "column", height: "540px" }}>
+   <div style={{height:"90%" , background:"green"}}>
       <Row style={{ alignItems: "center", justifyItems: "center", height: "100%" }}>
         <div>
           <p className='form_title' style={{ fontSize: "24px" }}>An authorization code has been sent to your email.</p>
@@ -103,6 +104,7 @@ const FormOtp = ({ onNext, response }) =>
           }
         </div>
       </Row>
+      </div>
       <Row className="justify-content-center mt-3">
         <Col md={12}>
           <Button type='submit' className='button w-100' block onClick={handleSubmit} disabled={loading} >

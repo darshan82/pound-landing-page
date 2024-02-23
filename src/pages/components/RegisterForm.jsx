@@ -127,6 +127,8 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
 
   return (
     <Container className='form_container' style={{ position: "relative", height: "540px" }}>
+     <div style={{height:"90%"}}>
+     
       {/* Part 1: Text Titles */}
       <ToastNotification
         show={showToast}
@@ -143,7 +145,7 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
 
       {/* Part 2: Input Fields */}
       <Form>
-        <Row className="justify-content-center my-2">
+        <Row className="justify-content-center my-3">
           <Col xs={6} md={6} style={{ paddingRight: "5px" }}>
             <Form.Group controlId="first_name">
               <Form.Control autocomplete="off" name="first_name" style={{ margin: 0 }} className='input' type="text" placeholder="First name" value={state?.first_name} onChange={handleChange} />
@@ -206,9 +208,10 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
             </Form>
           </Col>
         </Row>
-
+      </Form>
+        </div>
         {/* Part 4: Continue Button */}
-        <Row className="justify-content-center mt-4 " >
+        <Row className="justify-content-center mt-3 " >
           <Col md={12}>
             <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
               {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
@@ -216,7 +219,6 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
             </Button>
           </Col>
         </Row>
-      </Form>
 
       {/* Error message display */}
       {error && (
