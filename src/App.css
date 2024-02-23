@@ -336,10 +336,10 @@ p{
   font-size: 16px;
 }
 
-.btn-onboard:hover{
-  border: 1px solid rgba(255,255,255,.6);
-  /* color:black; */
-  background: #252628; 
+.btn-onboard:hover    {
+  border: 1px solid rgba(255,255,255,.6) !important;
+  background: #252628 !important; 
+ 
 
 }
 
