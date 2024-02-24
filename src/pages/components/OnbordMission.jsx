@@ -5,53 +5,56 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 // import ReactGA from 'react-ga';
 
-const OnboardMission = ({ onNext  ,state , setState }) => {
+const OnboardMission = ({ onNext, state, setState }) =>
+{
     const [error, setError] = useState("")
 
 
-    const handleContinue = (e) => {
+    const handleContinue = (e) =>
+    {
         e.preventDefault();
-      
-        if (!state?.email) {
+
+        if (!state?.email)
+        {
             setError('Please add your email address.');
             return;
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(state?.email))
-    {
-      setError('Please enter a valid email address.');
-      return;
-    }
-    
+        {
+            setError('Please enter a valid email address.');
+            return;
+        }
+
         const subDomain = "poundgaming"
-        const apiKey ="aaff10p5I_2HLos2BzuTnoNsp7F"
-        const header= {
-            ["x-api-key"]:apiKey
-        }  
+        const apiKey = "aaff10p5I_2HLos2BzuTnoNsp7F"
+        const header = {
+            ["x-api-key"]: apiKey
+        }
 
-        axios.get(`https://api-v1.zealy.io/communities/${subDomain}/users?email=${state?.email}`, {headers:header}).then((res)=>{
-           
-        axios.post(`https://18.217.10.162/api/users/website?email=${state.email}` ).then((res) =>
-            {
-    
-              onNext()
-              setError("");
-            }).catch((err) =>
-            {
-        
-              setError( err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
-        
-            })
+        // axios.get(`https://api-v1.zealy.io/communities/${subDomain}/users?email=${state?.email}`, {headers:header}).then((res)=>{
 
-        }).catch((err)=>setError("Please Onboard first"))
+        axios.post(`https://18.217.10.162/api/users/website?email=${state.email}`).then((res) =>
+        {
+
+            onNext()
+            setError("");
+        }).catch((err) =>
+        {
+
+            setError(err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
+
+        })
+
+        // }).catch((err)=>setError("Please Onboard first"))
     }
 
-    
+
 
     return (
         <Container className='form_container' style={{ position: "relative", height: "540px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
             {/* Part 1: Text Titles */}
-            
+
             <Row className="px-4">
                 <Col>
                     <p className='form_title' style={{ fontSize: "22px" }} >Forge your digital identity to join the team of testers!</p>
@@ -61,9 +64,9 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
 
             {/* Part 2: Input Fields */}
             <a href='https://zealy.io/cw/poundgaming' target='_blank'>
-            <Button className="btn-onboard" >
-                Go to Onboarding Missions
-            </Button>
+                <Button className="btn-onboard" >
+                    Go to Onboarding Missions
+                </Button>
             </a>
             <div>
                 <p className='form_subtitle'>Already completed Onboarding Missions?</p>
@@ -71,18 +74,18 @@ const OnboardMission = ({ onNext  ,state , setState }) => {
                 <p className='form_subtitle'>Enter your email for verification.</p>
                 <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%", marginTop: "10px", border: error && "1px solid red" }}>
                     <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Email</p>
-                    <div style={{ display: "flex" , justifyContent:'space-between' }}>
+                    <div style={{ display: "flex", justifyContent: 'space-between' }}>
                         <input
                             autocomplete="off"
-                            onChange={(e)=>setState({...state , email:e.target.value})}
-                            className='input'  placeholder='Enter your Email' style={{ background: "transparent" , height:"20px" , minHeight:10, flex:1 }} />
+                            onChange={(e) => setState({ ...state, email: e.target.value })}
+                            className='input' placeholder='Enter your Email' style={{ background: "transparent", height: "20px", minHeight: 10, flex: 1 }} />
                         {error && <div style={{ color: "red", fontSize: 14, fontWeight: "bold", marginTop: 3 }}>X</div>}
                     </div>
                 </div>
                 {error &&
-                        
-                        <p style={{ fontSize: "10px", color: "red", paddingInline: '10px', marginTop: 5 }}>{error}</p>
-                    }
+
+                    <p style={{ fontSize: "10px", color: "red", paddingInline: '10px', marginTop: 5 }}>{error}</p>
+                }
 
             </div>
 
