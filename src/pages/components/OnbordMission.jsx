@@ -26,27 +26,23 @@ const OnboardMission = ({ onNext, state, setState }) =>
             return;
         }
 
-        const subDomain = "poundgaming"
-        const apiKey = "aaff10p5I_2HLos2BzuTnoNsp7F"
-        const header = {
-            ["x-api-key"]: apiKey
-        }
 
-        // axios.get(`https://api-v1.zealy.io/communities/${subDomain}/users?email=${state?.email}`, {headers:header}).then((res)=>{
-
-        axios.post(`https://18.217.10.162/api/users/website?email=${state.email}`).then((res) =>
+        axios.get(`https://18.217.10.162/api/zealy?email=${state?.email}`).then((res) =>
         {
 
-            onNext()
-            setError("");
-        }).catch((err) =>
-        {
+            axios.post(`https://18.217.10.162/api/users/website?email=${state.email}`).then((res) =>
+            {
 
-            setError(err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
+                onNext()
+                setError("");
+            }).catch((err) =>
+            {
 
-        })
+                setError(err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
 
-        // }).catch((err)=>setError("Please Onboard first"))
+            })
+
+        }).catch((err) => setError("Please Onboard first"))
     }
 
 
