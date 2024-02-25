@@ -54,10 +54,11 @@ p{
 }
 
 .button {
-  background-color: #AEFF03;
-  color: black;
+  background-color: #B6FF1C;
+  color: #1F1F1F;
   border: 0;
-  font-weight: 500;
+  font-weight: 600;
+  font-family:Montserrat;
 }
 
 .button:active , .button:hover ,.button:disabled     {
