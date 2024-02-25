@@ -10,6 +10,7 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from '../../../firebase';
 import ToastNotification from './Alert';
 import ReactGA from 'react-ga';
+import axios from 'axios';
 
 const Footer = () => {
     const [email, setEmail] = useState('');
@@ -46,24 +47,28 @@ const Footer = () => {
         } else {
             // Set loading to true to disable the button and show the spinner
             setLoading(true);
+            axios.post("https://18.217.10.162/api/users/subscribe" , {email}).then((res)=>{
+                setSuccess("Thank you for Subscribing")
+            }).catch((err)=>{
+                showToastNotification("error", err?.response?.data?.message);
+            })
+            // const querySnapshot = await getDocs(collection(db, "subscribedUsers"));
+            // const existingEmail = querySnapshot.docs.find(doc => doc.data().email === email);
 
-            const querySnapshot = await getDocs(collection(db, "subscribedUsers"));
-            const existingEmail = querySnapshot.docs.find(doc => doc.data().email === email);
-
-            if (existingEmail) {
-                showToastNotification("error", "Email is already in our Subscribers List");
-                // Handle duplicate email scenario
-            } else {
-                // Create the new document
-                try {
-                    const docRef = await addDoc(collection(db, "subscribedUsers"), { email });
-                    if (docRef.id) showToastNotification("success", "You have Susbcribe Successfully")
-                    setSuccess("Thank you for Subscribing")
-                } catch (e) {
-                    showToastNotification("error", "Some thing went wrong");
-                    console.log("Error adding document: ", e);
-                }
-            }
+            // if (existingEmail) {
+            //     showToastNotification("error", "Email is already in our Subscribers List");
+            //     // Handle duplicate email scenario
+            // } else {
+            //     // Create the new document
+            //     try {
+            //         const docRef = await addDoc(collection(db, "subscribedUsers"), { email });
+            //         if (docRef.id) showToastNotification("success", "You have Susbcribe Successfully")
+                    
+            //     } catch (e) {
+                    
+            //         console.log("Error adding document: ", e);
+            //     }
+            // }
 
             // Clear the email input and reset loading state after a short delay (simulating asynchronous operation)
             setTimeout(() => {
