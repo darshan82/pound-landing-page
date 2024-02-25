@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 const OnboardMission = ({ onNext, state, setState }) =>
 {
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false);
 
 
     const handleContinue = (e) =>
@@ -26,10 +27,9 @@ const OnboardMission = ({ onNext, state, setState }) =>
             return;
         }
 
-
+        setLoading(true)
         axios.get(`https://18.217.10.162/api/zealy?email=${state?.email}`).then((res) =>
         {
-
             axios.post(`https://18.217.10.162/api/users/website?email=${state.email}`).then((res) =>
             {
 
@@ -40,9 +40,15 @@ const OnboardMission = ({ onNext, state, setState }) =>
 
                 setError(err?.response?.data?.message ? err?.response?.data?.message : "Some thing went Wrong");
 
-            })
+            }).finally(() =>
+            {
+                setLoading(false)
 
-        }).catch((err) => setError("Please complete onboarding mission first"))
+            })
+        }).catch((err) => setError("Please complete onboarding mission first")).finally(() =>
+        {
+            setLoading(false)
+        })
     }
 
 
@@ -69,13 +75,20 @@ const OnboardMission = ({ onNext, state, setState }) =>
                 {/* <br/> */}
                 <p className='form_subtitle'>Enter your email for verification.</p>
                 <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%", marginTop: "10px", border: error && "1px solid red" }}>
-                    <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)",marginLeft:2 }} >Email</p>
+                    <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)", marginLeft: 2 }} >Email</p>
                     <div style={{ display: "flex", justifyContent: 'space-between' }}>
                         <input
                             autocomplete="off"
                             onChange={(e) => setState({ ...state, email: e.target.value })}
+                            value={state?.email ?? ""}
                             className='input' placeholder='Enter your Email' style={{ background: "transparent", height: "30px", minHeight: 10, flex: 1 }} />
-                        {error && <div style={{ color: "red", fontSize: 14, fontWeight: "bold", marginTop: 3 }}>X</div>}
+                        {error && <div style={{ color: "red", fontSize: 14, fontWeight: "bold", marginTop: 3, cursor: "pointer" }}
+                            onClick={() =>
+                            {
+                                setState({ ...state, email: "", })
+                                setError(null)
+                            }}
+                        >X</div>}
                     </div>
                 </div>
                 {error &&
@@ -89,8 +102,7 @@ const OnboardMission = ({ onNext, state, setState }) =>
             <Row className="justify-content-center mt-3">
                 <Col md={12}>
                     <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={false}>
-                        {false ? <Spinner animation="border" size="sm" className="mr-2" /> : "Forge my identity"}
-
+                        {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Forge my identity"}
                     </Button>
                 </Col>
             </Row>
