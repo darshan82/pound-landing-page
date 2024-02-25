@@ -63,7 +63,7 @@ p{
 
 .button:active , .button:hover ,.button:disabled     {
   background-color: #B6FF1C !important;
-  color: #1F1F1F;
+  color: #1F1F1F !important;
 }
 
 
