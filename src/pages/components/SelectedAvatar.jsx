@@ -91,12 +91,12 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
                 <Col>
 
                     <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%", border: error && "1px solid red" }}>
-                        <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Player Tag</p>
+                        <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)",marginLeft:2 }} >Player Tag</p>
                         <div style={{ display: "flex" }}>
                             <input
                                 autocomplete="off"
                                 value={tag}
-                                onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", minHeight:10, height:"20px",  width: error && 260, paddingRight: error && 10 }} />
+                                onChange={handleChange} className='input' placeholder='Insert player tag' style={{ background: "transparent", minHeight:30, height:"30px",  width: error && 260, paddingRight: error && 10 }} />
                             {error && <div style={{ color: "red", fontSize: 14, fontWeight: "bold", marginTop: 3 }}>X</div>}
                         </div>
                     </div>

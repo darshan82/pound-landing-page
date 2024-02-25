@@ -42,7 +42,7 @@ const OnboardMission = ({ onNext, state, setState }) =>
 
             })
 
-        }).catch((err) => setError("Please Onboard first"))
+        }).catch((err) => setError("Please complete onboarding missing first"))
     }
 
 
@@ -69,12 +69,12 @@ const OnboardMission = ({ onNext, state, setState }) =>
                 {/* <br/> */}
                 <p className='form_subtitle'>Enter your email for verification.</p>
                 <div style={{ background: "#2a2b2c", padding: "8px 12px", borderRadius: "10px", width: "100%", marginTop: "10px", border: error && "1px solid red" }}>
-                    <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)" }} >Email</p>
+                    <p style={{ fontSize: "13px", color: "rgba(255,255,255,.6)",marginLeft:2 }} >Email</p>
                     <div style={{ display: "flex", justifyContent: 'space-between' }}>
                         <input
                             autocomplete="off"
                             onChange={(e) => setState({ ...state, email: e.target.value })}
-                            className='input' placeholder='Enter your Email' style={{ background: "transparent", height: "20px", minHeight: 10, flex: 1 }} />
+                            className='input' placeholder='Enter your Email' style={{ background: "transparent", height: "30px", minHeight: 10, flex: 1 }} />
                         {error && <div style={{ color: "red", fontSize: 14, fontWeight: "bold", marginTop: 3 }}>X</div>}
                     </div>
                 </div>
