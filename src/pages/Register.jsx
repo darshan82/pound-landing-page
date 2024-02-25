@@ -31,7 +31,7 @@ const Register = () =>
       </Container>
 
       {/* Last Section: Image and Form */}
-      <Container style={{ padding: 0 }} >
+      <Container fluid>
         <Row className="mt-2">
           <Col md={12} lg={8}  >
 
