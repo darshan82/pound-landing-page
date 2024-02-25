@@ -71,7 +71,7 @@ const FormOtp = ({ onNext, response }) =>
     }
     else
     {
-      console.log("Response is missing")
+      console.log("Response is mission")
     }
 
 

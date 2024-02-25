@@ -42,7 +42,7 @@ const OnboardMission = ({ onNext, state, setState }) =>
 
             })
 
-        }).catch((err) => setError("Please complete onboarding missing first"))
+        }).catch((err) => setError("Please complete onboarding mission first"))
     }
 
 
