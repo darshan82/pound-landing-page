@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Footer from './components/Footer.jsx';
 import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import NavBar from './components/Navbar.jsx';
 const PrivacyPolicy = () => {
   const location = useLocation();
   useEffect(() => {
