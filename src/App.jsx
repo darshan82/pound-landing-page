@@ -39,10 +39,7 @@ function App()
   ]);
 
   return (
-    <>
-    <NavBar/>
     <RouterProvider router={router} />
-    </>
   )
 }
 

@@ -16,7 +16,7 @@ const TermsConditions = () => {
 
   return (
     <div className='main_div' >
-      {/* <NavBar /> */}
+      <NavBar />
 
       {/* Second Row: Two Texts Vertically Aligned */}
       <Container style={{ paddingTop: 100 }} >
