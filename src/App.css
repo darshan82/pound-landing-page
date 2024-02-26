@@ -372,3 +372,10 @@ p{
     border: none;
   
 }
+
+.paragraph_privacy_Policy{
+    font-size: 41px;
+    font-weight: 500;
+    line-height: 51px;
+    letter-spacing: -1px;
+}

@@ -9,6 +9,10 @@ import
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import TermsConditions from './pages/Terms&Conditions'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import { Navbar } from 'react-bootstrap'
+import NavBar from './pages/components/Navbar'
 function App()
 {
   const [count, setCount] = useState(0)
@@ -23,11 +27,20 @@ function App()
     {
       path: "/",
       element: <Register />,
+    },{
+      path: "/terms_conditions",
+      element: <TermsConditions />,
+    },{
+      path: "/privacy_policy",
+      element: <PrivacyPolicy />,
     },
   ]);
 
   return (
+    <>
+    <NavBar/>
     <RouterProvider router={router} />
+    </>
   )
 }
 
