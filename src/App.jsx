@@ -28,11 +28,11 @@ function App()
       element: <Register />,
     },
     {
-      path: "/terms_conditions",
+      path: "terms_conditions",
       element: <TermsConditions />,
     },
     {
-      path: "/privacy_policy",
+      path: "privacy_policy",
       element: <PrivacyPolicy />,
     },
   ]);
