@@ -25,16 +25,16 @@ function App()
   const router = createBrowserRouter([
     {
       path: "/",
+      element: <Register />,
+    },
+    {
+      path: "/terms_conditions",
       element: <TermsConditions />,
     },
-    // {
-    //   path: "/terms_conditions",
-    //   element: <TermsConditions />,
-    // },
-    // {
-    //   path: "/privacy_policy",
-    //   element: <PrivacyPolicy />,
-    // },
+    {
+      path: "/privacy_policy",
+      element: <PrivacyPolicy />,
+    },
   ]);
 
   return (
