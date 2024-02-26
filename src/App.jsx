@@ -11,7 +11,6 @@ import
 } from "react-router-dom";
 import TermsConditions from './pages/Terms&Conditions.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
-import { Navbar } from 'react-bootstrap'
 import NavBar from './pages/components/Navbar'
 function App()
 {
@@ -26,16 +25,16 @@ function App()
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Register />,
-    },
-    {
-      path: "/terms_conditions",
       element: <TermsConditions />,
     },
-    {
-      path: "/privacy_policy",
-      element: <PrivacyPolicy />,
-    },
+    // {
+    //   path: "/terms_conditions",
+    //   element: <TermsConditions />,
+    // },
+    // {
+    //   path: "/privacy_policy",
+    //   element: <PrivacyPolicy />,
+    // },
   ]);
 
   return (
