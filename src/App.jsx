@@ -9,8 +9,8 @@ import
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import TermsConditions from './pages/Terms&Conditions'
-import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsConditions from './pages/Terms&Conditions.jsx'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import { Navbar } from 'react-bootstrap'
 import NavBar from './pages/components/Navbar'
 function App()
@@ -29,11 +29,11 @@ function App()
       element: <Register />,
     },
     {
-      path: "/termsConditions",
+      path: "/terms_conditions",
       element: <TermsConditions />,
     },
     {
-      path: "/privacy",
+      path: "/privacy_policy",
       element: <PrivacyPolicy />,
     },
   ]);
