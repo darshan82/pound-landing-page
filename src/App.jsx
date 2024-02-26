@@ -27,10 +27,12 @@ function App()
     {
       path: "/",
       element: <Register />,
-    },{
+    },
+    {
       path: "/terms_conditions",
       element: <TermsConditions />,
-    },{
+    },
+    {
       path: "/privacy_policy",
       element: <PrivacyPolicy />,
     },
