@@ -7,7 +7,8 @@ import ReactGA from 'react-ga';
 import
 {
   createBrowserRouter,
-  RouterProvider,
+  Route,
+  Routes,
 } from "react-router-dom";
 import TermsConditions from './pages/Terms&Conditions.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
@@ -22,23 +23,16 @@ function App()
 
   }, [])
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Register />,
-    },
-    {
-      path: "/terms_conditions",
-      element: <TermsConditions />,
-    },
-    {
-      path: "/privacy_policy",
-      element: <PrivacyPolicy />,
-    },
-  ]);
+ 
 
   return (
-    <RouterProvider router={router} />
+    <Routes>
+      <Route  path='/' element={<Register/>}/>
+      <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
+      <Route  path='/terms_conditions' element={<TermsConditions/>}/>
+      <Route/>
+    </Routes>
+    // <RouterProvider router={router} />
   )
 }
 
