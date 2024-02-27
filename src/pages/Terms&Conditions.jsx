@@ -8,9 +8,11 @@ import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
 import Stepper from './components/Stepper/Stepper.jsx';
-const TermsConditions = () => {
+const TermsConditions = () =>
+{
   const location = useLocation();
-  useEffect(() => {
+  useEffect(() =>
+  {
     ReactGA.pageview(location.pathname + location.search);
   }, [location]);
 
@@ -19,7 +21,7 @@ const TermsConditions = () => {
       <NavBar />
 
       {/* Second Row: Two Texts Vertically Aligned */}
-      <Container style={{ paddingTop: 100 }} >
+      <Container style={{ paddingTop: 100, color: "rgba(255,255,255,0.6)" }} >
         <p className='paragraph_privacy_Policy' style={{ fontWeight: 800 }}>POUND Gaming Terms of Use</p>
         <br />
         <p style={{ fontSize: "16px", fontWeight: 500 }}>PLEASE READ THESE TERMS OF USE ("AGREEMENT") CAREFULLY BEFORE USING THE SERVICES PROVIDED BY POUND GAMING, INC. ("POUND GAMING", "US", "WE", "OUR"). THIS AGREEMENT SETS FORTH THE LEGALLY BINDING TERMS AND CONDITIONS FOR YOUR USE OF THE VARIOUS SERVICES OFFERED BY POUND GAMING, INCLUDING BUT NOT LIMITED TO, ALL SOFTWARE, APPLICATIONS, CONTENT, AND GAMES (COLLECTIVELY, THE "SERVICES").
