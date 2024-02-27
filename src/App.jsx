@@ -4,34 +4,34 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Register from './pages/Register'
 import ReactGA from 'react-ga';
-import
-{
-  createBrowserRouter,
-  Route,
-  Routes,
+import {
+createBrowserRouter,
+Route,
+Routes,
 } from "react-router-dom";
 import TermsConditions from './pages/Terms&Conditions.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import NavBar from './pages/components/Navbar'
-function App()
-{
+function App() {
   const [count, setCount] = useState(0)
   ReactGA.initialize('G-EVDP6RWK28');
-  useEffect(() =>
-  {
+  useEffect(() => {
     ReactGA.initialize('G-EVDP6RWK28');
 
   }, [])
 
- 
+
 
   return (
+    <>
+    <NavBar/>
     <Routes>
-      <Route  path='/' element={<Register/>}/>
-      <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
-      <Route  path='/terms_conditions' element={<TermsConditions/>}/>
-      <Route/>
+
+      <Route path='/' element={<Register />} />
+      <Route path='/privacy_policy' element={<PrivacyPolicy />} />
+      <Route path='/terms_conditions' element={<TermsConditions />} />
     </Routes>
+    </>
     // <RouterProvider router={router} />
   )
 }
