@@ -24,7 +24,6 @@ function App() {
 
   return (
     <>
-    <NavBar/>
     <Routes>
 
       <Route path='/' element={<Register />} />
