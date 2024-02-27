@@ -8,6 +8,8 @@ const NavBar = () =>
 {
   return (
     <Navbar className='navbar' variant="dark" fixed="top">
+      <a href='/'>
+
       <div className="logo"  >
         <div >
           <img
@@ -15,10 +17,11 @@ const NavBar = () =>
             alt="Logo"
             style={{ width: "100%", objectFit: "contain", display: "inline", padding: 0 }}
             className=""
-          />
+            />
         </div>
         {/* <span className="logo-text fs-20 " style={{ display: 'inline', fontWeight: '700', marginLeft: "5px" }}></span> */}
       </div>
+            </a>
 
       <Button
         onClick={() =>

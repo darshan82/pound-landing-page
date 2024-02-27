@@ -26,9 +26,9 @@ function App() {
     <>
     <Routes>
 
-      <Route path='/' element={<Register />} />
-      <Route path='privacypolicy' element={<PrivacyPolicy />} />
-      <Route path='termsconditions' element={<TermsConditions />} />
+      <Route exact path='/' Component={Register} />
+      <Route path='/privacy_policy'Component={PrivacyPolicy} />
+      <Route path='/terms_conditions' Component={TermsConditions} />
     </Routes>
     </>
     // <RouterProvider router={router} />
