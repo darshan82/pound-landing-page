@@ -4,9 +4,11 @@ import Footer from './components/Footer.jsx';
 import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import NavBar from './components/Navbar.jsx';
-const PrivacyPolicy = () => {
+const PrivacyPolicy = () =>
+{
   const location = useLocation();
-  useEffect(() => {
+  useEffect(() =>
+  {
     ReactGA.pageview(location.pathname + location.search);
   }, [location]);
 
@@ -23,8 +25,10 @@ const PrivacyPolicy = () => {
           <ol className='paragraph_privacy_Policy'>
             <br />
             <li>
-              <span style={{ fontWeight: 700 }}>Control Over Personal Data</span><br />
+              <span style={{ fontWeight: 700, }}>Control Over Personal Data</span><br /><br />
               At POUND Gaming, we believe that you should have control over your personal data:
+              <br />
+
               <ul>
 
                 <li>We will delete your personal data upon request, especially if you decide to cancel your subscription.</li>
@@ -34,8 +38,9 @@ const PrivacyPolicy = () => {
             </li>
             <br />
             <li>
-              <span style={{ fontWeight: 700 }}>  Limited Access by POUND Gaming Employees</span> <br />
+              <span style={{ fontWeight: 700 }}>  Limited Access by POUND Gaming Employees</span> <br /><br />
               Your privacy is a priority:
+              <br />
               <ul>
                 <li>
 
@@ -53,8 +58,11 @@ const PrivacyPolicy = () => {
             </li>
             <br />
             <li>
-              <span style={{ fontWeight: 700 }}>No Sale of Personal Data</span><br />
+              <span style={{ fontWeight: 700 }}>No Sale of Personal Data</span><br /><br />
               POUND Gaming values your trust:
+              <br />
+
+              
               <ul>
                 <li>
 
@@ -69,8 +77,9 @@ const PrivacyPolicy = () => {
             </li>
             <br />
             <li>
-              <span style={{ fontWeight: 700 }}>Use of Aggregated or De-Identified Data</span><br />
+              <span style={{ fontWeight: 700 }}>Use of Aggregated or De-Identified Data</span><br /><br />
               Improving gaming performance:
+              <br />
               <ul>
                 <li>
 
@@ -85,8 +94,9 @@ const PrivacyPolicy = () => {
             </li>
             <br />
             <li>
-              <span style={{ fontWeight: 700 }}>Handling Third-Party Requests for Data</span> <br />
+              <span style={{ fontWeight: 700 }}>Handling Third-Party Requests for Data</span> <br /><br />
               Protecting your data from third parties:
+              <br />
               <ul>
                 <li>
 
@@ -105,10 +115,10 @@ const PrivacyPolicy = () => {
             </li>
             <br />
             <li>
-              <span style={{ fontWeight: 700 }}> Commitment to Privacy </span><br />
+              <span style={{ fontWeight: 700 }}> Commitment to Privacy </span><br /><br />
               Your trust is important to us, and we are committed to continuously improving our services while respecting your privacy. We invite you to review this Privacy Policy regularly for updates.
-              <br/>
-              <br/>
+              <br />
+              <br />
               For further information or if you have any questions about our privacy practices, please contact us at team@poundgaming.com.
             </li>
           </ol>
