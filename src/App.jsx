@@ -27,8 +27,8 @@ function App() {
     <Routes>
 
       <Route path='/' element={<Register />} />
-      <Route path='privacypolicy' element={<PrivacyPolicy />} />
-      <Route path='termsconditions' element={<TermsConditions />} />
+      <Route path='/privacy_policy' element={<PrivacyPolicy />} />
+      <Route path='/terms_conditions' element={<TermsConditions />} />
     </Routes>
     </>
     // <RouterProvider router={router} />

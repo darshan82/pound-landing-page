@@ -114,6 +114,8 @@ const Footer = () => {
                             <div style={{ marginTop: "10px", paddingTop: 20 }}>
 
                                 <a className='footer_subtitle' target='_blank' href="mailto:team@poundgaming.com" style={{ textDecoration: "none", }} >Contact us</a>
+                                <a className='footer_subtitle' target='_blank' href="privacy_policy" style={{ textDecoration: "none", }} >Privacy Policy</a>
+                                <a className='footer_subtitle' target='_blank' href="terms_conditions" style={{ textDecoration: "none", }} >Terms of Use</a>
                             </div>
                         </div>
                     </Col>
