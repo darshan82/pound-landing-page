@@ -4,7 +4,7 @@ import "../../App.css";
 import ToastNotification from './Alert';
 import axios from 'axios';
 import ReactGA from 'react-ga';
-
+import countries from "./country.json"
 const RegisterForm = ({ onNext, state, setState, setResponse }) =>
 {
 
@@ -49,40 +49,47 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
     }
 
     // Set loading to true
-    setLoading(true);
 
     // Check if required fields are filled
-    if (!state.first_name)
+    if (!state?.first_name)
     {
       setError('Please add your first name.');
       setLoading(false);
       return;
     }
 
-    if (!state.last_name)
+    if (!state?.last_name)
     {
       setError('Please add your last name.');
       setLoading(false);
       return;
     }
-
-   
-    
-
-
-    if (!state?.gamesToplay?.length)
+    if (!state?.country)
     {
-      setError('Please select at least one game.');
+      setError('Please select your country.');
       setLoading(false);
       return;
     }
 
+
+
+
+
+    // if (!state?.gamesToplay?.length)
+    // {
+    //   setError('Please select at least one game.');
+    //   setLoading(false);
+    //   return;
+    // }
+
     // All required fields are filled, proceed to add the document
+    setLoading(true);
 
     const data = state
     data.email_verified = false
+
     console.log(data)
-    axios.post(`https://18.217.10.162/api/users/website`, data).then((res) =>
+    axios.post(`https://18.217.10.162/api/users/website`, { ...data, location: { country: data?.country } }).then((res) =>
     {
       setResponse(res?.data?.newUser)
 
@@ -107,11 +114,11 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
     {
       return {
         ...prev,
-        gamesToplay: prev?.gamesToplay
-          ? prev.gamesToplay.includes(game)
-            ? prev.gamesToplay.filter((item) => item !== game)
-            : [...prev.gamesToplay, game]
-          : [game],
+        // gamesToplay: prev?.gamesToplay
+        //   ? prev.gamesToplay.includes(game)
+        //     ? prev.gamesToplay.filter((item) => item !== game)
+        //     : [...prev.gamesToplay, game]
+        //   : [game],
       };
     });
   };
@@ -127,107 +134,117 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
 
   return (
     <Container className='form_container' style={{ position: "relative", height: "540px" }}>
-     <div style={{height:"90%"}}>
-     
-      {/* Part 1: Text Titles */}
-      <ToastNotification
-        show={showToast}
-        onClose={() => setShowToast(false)}
-        type={toastType}
-        message={toastMessage}
-      />
-      <Row className="px-4">
-        <Col>
-          <p className='form_title' >Join the team of testers!</p>
-          <p className='form_subtitle' >POUND Beta Testers are committed to contributing in the development of the best fitness app designed specifically for gamers.</p>
+      <div style={{ height: "80%" }}>
+
+        {/* Part 1: Text Titles */}
+        <ToastNotification
+          show={showToast}
+          onClose={() => setShowToast(false)}
+          type={toastType}
+          message={toastMessage}
+        />
+        <Row className="px-4">
+          <Col>
+            <p className='form_title' >Join the team of testers!</p>
+            <p className='form_subtitle' >POUND Beta Testers are committed to contributing in the development of the best fitness app designed specifically for gamers.</p>
+          </Col>
+        </Row>
+
+        {/* Part 2: Input Fields */}
+        <Form>
+          <Row className="justify-content-center my-3">
+            <Col xs={6} md={6} style={{ paddingRight: "5px" }}>
+              <Form.Group controlId="first_name">
+                <Form.Control autocomplete="off" name="first_name" style={{ margin: 0 }} className='input' type="text" placeholder="First name" value={state?.first_name} onChange={handleChange} />
+              </Form.Group>
+            </Col>
+            <Col xs={6} md={6} style={{ paddingLeft: "5px" }}>
+              <Form.Group controlId="last_name">
+                <Form.Control autocomplete="off" name='last_name' className='input' type="text" placeholder="Last name" value={state?.last_name} onChange={handleChange} />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <Row className="justify-content-center my-3 pl-3">
+            <Col xs={12} md={12} style={{ paddingLeft: "15px" }}>
+              <p style={{ fontFamily: "Montserrat, sans-serif", marginTop: 10, marginBottom: 20 }}>What is your location?</p>
+              <Form.Group controlId="country">
+                <Form.Select style={{ color: state?.country ? "" : "rgba(255, 255, 255, 0.3)" }} value={state?.country ?? null} onChange={handleChange} placeholder="Select Country" aria-label="Default select example" name='country' className='input'>
+
+
+                  <option value="" disabled style={{ color: "red" }} selected>Select your country</option>
+                  {
+                    countries.map(country =>
+                      <option value={country?.name}>{country?.name}</option>
+                    )
+                  }
+                </Form.Select>
+              </Form.Group>
+            </Col>
+          </Row>
+
+
+          {/* Part 3: Game Options */}
+
+          {/* <Row>
+            <Col>
+              <p className='form_categories_title'>What games do you play?</p >
+              <Form className='custom-scroll' >
+                {[
+                  "League of Legends",
+                  "Call of Duty",
+                  "Fortnite",
+                  "Dota 2",
+                  "Valorant",
+                  "World of Warcraft",
+                  "Overwatch 2",
+                  "Apex Legends",
+                  "Diablo 4",
+                  "Genshin Impact",
+                  "Halo Infinite",
+                  "Counter-Strike",
+                  "Minecraft",
+                  "Rocket League",
+                  "Rainbow Six Siege",
+                  "Hearthstone",
+                  "Final Fantasy",
+                  "New Worlds",
+                  "Warframe",
+                  "Other"
+                ].map((game, index) => (
+                  <div style={{ minWidth: "50%", fontSize: "14px", textAlign: "left", color: "rgba(255,255,255,.6)" }} key={index}>
+                    <Form.Check
+                      checked={!!state?.gamesToplay && state?.gamesToplay?.includes(game)}
+                      type="checkbox"
+                      id={`game-${index}`}
+                      className='custom-control custom-checkbox'
+                      label={game}
+                      inline
+                      onChange={() => handleCheckboxChange(game)}
+                    />
+                  </div>
+                ))}
+              </Form>
+            </Col>
+          </Row>
+           */}
+        </Form>
+      </div>
+      {/* Part 4: Continue Button */}
+      <Row className="justify-content-center mt-3" >
+        <Col md={12}>
+          <div className=" mt-3 mb-2">
+            <p className="text-danger" style={{ visibility: error ? "visible" : "hidden" }}>{error || "ddsad"}</p>
+          </div>
+          <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
+            {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
+
+          </Button>
         </Col>
       </Row>
 
-      {/* Part 2: Input Fields */}
-      <Form>
-        <Row className="justify-content-center my-3">
-          <Col xs={6} md={6} style={{ paddingRight: "5px" }}>
-            <Form.Group controlId="first_name">
-              <Form.Control autocomplete="off" name="first_name" style={{ margin: 0 }} className='input' type="text" placeholder="First name" value={state?.first_name} onChange={handleChange} />
-            </Form.Group>
-          </Col>
-          <Col xs={6} md={6} style={{ paddingLeft: "5px" }}>
-            <Form.Group controlId="last_name">
-              <Form.Control autocomplete="off" name='last_name' className='input' type="text" placeholder="Last name" value={state?.last_name} onChange={handleChange} />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row className="justify-content-center ">
-          <Col md={12}>
-            {/* <Form.Group controlId="email">
-              <Form.Control autocomplete="off" name="email" className='input' type="email" placeholder="Email" value={state?.email} onChange={handleChange} />
-            </Form.Group> */}
-          </Col>
-        </Row>
-
-        {/* Part 3: Game Options */}
-        <Row  >
-          <Col>
-            <p className='form_categories_title'>What games do you play?</p >
-            <Form className='custom-scroll' >
-              {/* Game Options */}
-              {[
-                "League of Legends",
-                "Call of Duty",
-                "Fortnite",
-                "Dota 2",
-                "Valorant",
-                "World of Warcraft",
-                "Overwatch 2",
-                "Apex Legends",
-                "Diablo 4",
-                "Genshin Impact",
-                "Halo Infinite",
-                "Counter-Strike",
-                "Minecraft",
-                "Rocket League",
-                "Rainbow Six Siege",
-                "Hearthstone",
-                "Final Fantasy",
-                "New Worlds",
-                "Warframe",
-                "Other"
-              ].map((game, index) => (
-                <div style={{ minWidth: "50%", fontSize: "14px", textAlign: "left", color: "rgba(255,255,255,.6)" }} key={index}>
-                  <Form.Check
-                    checked={!!state?.gamesToplay && state?.gamesToplay?.includes(game)}
-                    type="checkbox"
-                    id={`game-${index}`}
-                    className='custom-control custom-checkbox'
-                    label={game}
-                    inline
-                    onChange={() => handleCheckboxChange(game)}
-                  />
-                </div>
-              ))}
-            </Form>
-          </Col>
-        </Row>
-      </Form>
-        </div>
-        {/* Part 4: Continue Button */}
-        <Row className="justify-content-center mt-3 " >
-          <Col md={12}>
-            <Button type='submit' className='button w-100' block onClick={handleContinue} disabled={loading}>
-              {loading ? <Spinner animation="border" size="sm" className="mr-2" /> : "Submit"}
-
-            </Button>
-          </Col>
-        </Row>
-
       {/* Error message display */}
-      {error && (
-        <Row className="justify-content-center mt-3">
-          <Col md={12}>
-            <p className="text-danger">{error}</p>
-          </Col>
-        </Row>
-      )}
+
       {/*
          <div className='form_container' style={{ display:`${showMessage ? "flex"  :"none"}` ,inset: 0, position: "absolute", paddingInline:"25px",  flexDirection:"column", justifyContent: "center",}}>
         <p className='form_title'>

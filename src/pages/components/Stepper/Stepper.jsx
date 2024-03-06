@@ -17,6 +17,8 @@ const Stepper = () =>
   {
     setCurrentComponent((prevComponent) => (prevComponent < 7 ? prevComponent + 1 : prevComponent));
   };
+  console.log("state", state)
+  console.log("response", response)
 
   useLayoutEffect(() =>
   {
@@ -24,7 +26,8 @@ const Stepper = () =>
     const queryParams = new URLSearchParams(window.location.search);
     const paramValue = queryParams.get('step');
     console.log('Query parameter value:', paramValue);
-    if(paramValue){
+    if (paramValue)
+    {
       setCurrentComponent(8)
     }
 
@@ -40,8 +43,8 @@ const Stepper = () =>
       {currentComponent === 4 && <SelectedAvatar state={state} setState={setState} onNext={handleNext} />}
       {currentComponent === 5 && <RegisterForm state={state} setState={setState} onNext={handleNext} setResponse={setResponse} />}
       {currentComponent === 6 && <FormOtp response={response} onNext={handleNext} />}
-      {currentComponent === 7 && <SuccessMessage onNext={handleNext} />}
-      {currentComponent === 8 && <ErrorMessage onNext={handleNext} />}
+      {currentComponent === 7 && <SuccessMessage onNext={handleNext} state={state} response={response} />}
+      {currentComponent === 8 && <ErrorMessage onNext={handleNext} response={response}/>}
 
 
     </div>

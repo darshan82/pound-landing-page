@@ -79,7 +79,7 @@ const FormOtp = ({ onNext, response }) =>
 
   return (
     <Container className='form_container ' style={{ display: "flex", justifyContent: "space-between", flexDirection: "column", height: "540px" }}>
-   <div style={{height:"90%" }}>
+   <div style={{height:"80%" }}>
       <Row style={{ alignItems: "center", justifyItems: "center", height: "100%" }}>
         <div>
           <p className='form_title' style={{ fontSize: "24px" }}>An authorization code has been sent to your email.</p>

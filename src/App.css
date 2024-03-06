@@ -290,7 +290,7 @@ p{
   .sub_title {
     font-size: 16px !important;
     line-height: 28px;
-    width: 90%;
+    width: 80%;
   }
 
   .login_btn {
@@ -378,4 +378,7 @@ p{
     font-weight: 500;
     line-height: 31px;
     letter-spacing: -1px;
+}
+select option[disabled] {
+  color: #999; /* Change the color to gray or any color you prefer */
 }

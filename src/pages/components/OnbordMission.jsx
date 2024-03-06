@@ -26,10 +26,15 @@ const OnboardMission = ({ onNext, state, setState }) =>
             setError('Please enter a valid email address.');
             return;
         }
-
         setLoading(true)
         axios.get(`https://18.217.10.162/api/zealy?email=${state?.email}`).then((res) =>
         {
+            console.log("res", res)
+            if (res?.data?.level < 4)
+            {
+                setError("Please reach at level 4 on onboarding missions");
+                return
+            }
             axios.post(`https://18.217.10.162/api/users/website?email=${state.email}`).then((res) =>
             {
 
