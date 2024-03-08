@@ -30,7 +30,7 @@ const OnboardMission = ({ onNext, state, setState }) =>
         axios.get(`https://18.217.10.162/api/zealy?email=${state?.email}`).then((res) =>
         {
             console.log("res", res)
-            if (res?.data?.level < 4)
+            if (res?.data?.role !== "Onboarded Member")
             {
                 setError("Go to Onboading Missions to unlock Forge Identity");
                 return
@@ -55,7 +55,6 @@ const OnboardMission = ({ onNext, state, setState }) =>
             setLoading(false)
         })
     }
-
 
 
     return (
