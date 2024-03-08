@@ -32,7 +32,7 @@ const OnboardMission = ({ onNext, state, setState }) =>
             console.log("res", res)
             if (res?.data?.level < 4)
             {
-                setError("Please reach at level 4 on onboarding missions");
+                setError("Go to Onboading Missions to unlock Forge Identity");
                 return
             }
             axios.post(`https://18.217.10.162/api/users/website?email=${state.email}`).then((res) =>
