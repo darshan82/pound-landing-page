@@ -53,6 +53,7 @@ p{
   padding-left:0px !important;
 }
 
+
 .button {
   background-color: #AEFF03;
   color: #1F1F1F;
@@ -381,4 +382,7 @@ p{
 }
 select option[disabled] {
   color: #999; /* Change the color to gray or any color you prefer */
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%) grayscale(0%) brightness(50%);
 }

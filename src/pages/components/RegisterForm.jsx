@@ -69,6 +69,11 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
       setError('Please select your country.');
       setLoading(false);
       return;
+    } if (!state?.dob)
+    {
+      setError('Please enter your date of birth.');
+      setLoading(false);
+      return;
     }
 
 
@@ -167,6 +172,18 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
 
           <Row className="justify-content-center my-3 pl-3">
             <Col xs={12} md={12} style={{ paddingLeft: "15px" }}>
+              <p style={{ fontFamily: "Montserrat, sans-serif", marginTop: 10, marginBottom: 20 }}>When is your birthday?</p>
+              <Form.Group controlId="dob">
+                <Form.Control
+                  onClick={() => document.querySelector('input[type="date"]').click()}
+
+                  style={{ color: state?.dob ? "" : "rgba(255, 255, 255, 0.3)" }} name='dob' className='input' type="date" placeholder="Enter your date of birth" value={undefined} onChange={handleChange} />
+
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="justify-content-center my-3 pl-3">
+            <Col xs={12} md={12} style={{ paddingLeft: "15px" }}>
               <p style={{ fontFamily: "Montserrat, sans-serif", marginTop: 10, marginBottom: 20 }}>What is your location?</p>
               <Form.Group controlId="country">
                 <Form.Select style={{ color: state?.country ? "" : "rgba(255, 255, 255, 0.3)" }} value={state?.country ?? null} onChange={handleChange} placeholder="Select Country" aria-label="Default select example" name='country' className='input'>
@@ -182,7 +199,6 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
               </Form.Group>
             </Col>
           </Row>
-
 
           {/* Part 3: Game Options */}
 
