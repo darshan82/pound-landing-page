@@ -6,7 +6,7 @@ import RegisterForm from '../RegisterForm';
 import ForgiveIdentity from '../ForgetIdentity';
 import SuccessMessage from '../SuccessMessage';
 import ErrorMessage from '../ErrorMessage';
-import OnboardMission from '../OnbordMission';
+import OnboardMission from '../OnboardMission';
 
 const Stepper = () =>
 {
@@ -17,15 +17,12 @@ const Stepper = () =>
   {
     setCurrentComponent((prevComponent) => (prevComponent < 7 ? prevComponent + 1 : prevComponent));
   };
-  console.log("state", state)
-  console.log("response", response)
 
   useLayoutEffect(() =>
   {
 
     const queryParams = new URLSearchParams(window.location.search);
     const paramValue = queryParams.get('step');
-    console.log('Query parameter value:', paramValue);
     if (paramValue)
     {
       setCurrentComponent(8)
