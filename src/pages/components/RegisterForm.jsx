@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../../config';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import "../../App.css";
 import ToastNotification from './Alert';
@@ -94,7 +95,7 @@ const RegisterForm = ({ onNext, state, setState, setResponse }) =>
     data.email_verified = false
 
     console.log(data)
-    axios.post(`https://18.217.10.162/api/users/website`, { ...data, location: { country: data?.country } }).then((res) =>
+    axios.post(`${API_BASE_URL}/users/website`, { ...data, location: { country: data?.country } }).then((res) =>
     {
       setResponse(res?.data?.newUser)
 

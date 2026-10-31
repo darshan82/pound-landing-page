@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../../config';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
 import axios from 'axios';
@@ -27,7 +28,7 @@ const OnboardMission = ({ onNext, state, setState }) =>
             return;
         }
         setLoading(true)
-        axios.get(`https://18.217.10.162/api/zealy?email=${state?.email}`).then((res) =>
+        axios.get(`${API_BASE_URL}/zealy?email=${state?.email}`).then((res) =>
         {
             console.log("res", res)
             if (res?.data?.level < 4)
@@ -35,7 +36,7 @@ const OnboardMission = ({ onNext, state, setState }) =>
                 setError("Go to Onboading Missions to unlock Forge Identity");
                 return
             }
-            axios.post(`https://18.217.10.162/api/users/website?email=${state.email}`).then((res) =>
+            axios.post(`${API_BASE_URL}/users/website?email=${state.email}`).then((res) =>
             {
 
                 onNext()

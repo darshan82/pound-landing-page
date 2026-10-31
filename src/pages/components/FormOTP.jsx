@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Button, Col, Spinner, Row } from 'react-bootstrap';
 import ReactGA from 'react-ga';
@@ -59,7 +60,7 @@ const FormOtp = ({ onNext, response }) =>
       let isOtpValid = compareOtp(otp)
       if (isOtpValid)
       {
-        axios.post(`https://18.217.10.162/api/users/website?otp=${otp.join("")}&_id=${response?._id} `).then((res) =>
+        axios.post(`${API_BASE_URL}/users/website?otp=${otp.join("")}&_id=${response?._id} `).then((res) =>
         {
           onNext()
         }).catch((err) => setError(err?.response?.data?.message || "Some thing went wrong"))

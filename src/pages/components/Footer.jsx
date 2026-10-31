@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../../config';
 import { Row, Col, Form, InputGroup, Button, Spinner, DropdownDivider, Container } from 'react-bootstrap';
 import LogoImage from "../../assets/footerLogo.png";
 import discordIcon from "../../assets/discord.png";
@@ -47,7 +48,7 @@ const Footer = () => {
         } else {
             // Set loading to true to disable the button and show the spinner
             setLoading(true);
-            axios.post("https://18.217.10.162/api/users/subscribe" , {email}).then((res)=>{
+            axios.post(`${API_BASE_URL}/users/subscribe` , {email}).then((res)=>{
                 setSuccess("Thank you for Subscribing")
             }).catch((err)=>{
                 showToastNotification("error", err?.response?.data?.message);

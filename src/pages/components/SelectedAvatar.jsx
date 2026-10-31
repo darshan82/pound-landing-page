@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../../config';
 import { Container, Row, Col, Form, Button, Spinner, Image } from 'react-bootstrap';
 import "../../App.css";
 import axios from 'axios';
@@ -32,7 +33,7 @@ const SelectedAvatar = ({ onNext, state, setState }) =>
         }
         setLoading(true)
 
-        axios.post(`https://18.217.10.162/api/users/website?username=${tag}`).then((res) =>
+        axios.post(`${API_BASE_URL}/users/website?username=${tag}`).then((res) =>
         {
             setLoading(false)
 
